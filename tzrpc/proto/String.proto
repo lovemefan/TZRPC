@@ -1,0 +1,9 @@
+syntax = "proto3";
+package tzrpc.proto;
+message String {
+  string text = 1;
+}
+
+message StringArrayList {
+  repeated string text = 1;
+}

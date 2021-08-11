@@ -1,0 +1,9 @@
+syntax = "proto3";
+package tzrpc.proto;
+message Boolean {
+  bool value = 1;
+}
+
+message BooleanArrayList {
+  repeated bool value = 1;
+}

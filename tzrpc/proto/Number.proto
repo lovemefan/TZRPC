@@ -1,0 +1,26 @@
+syntax = "proto3";
+package tzrpc.proto;
+message Integer {
+  int32 value = 1;
+}
+
+message Float {
+  float value = 1;
+}
+
+message Double {
+  double value = 1;
+}
+
+message IntegerArrayList {
+  repeated int32 value = 1;
+}
+
+message FloatArrayList {
+  repeated float value = 1;
+}
+
+message DoubleArrayList {
+  repeated double value = 1;
+}
+
