@@ -10,8 +10,24 @@
 
 rpc 框架采用采用google的 [grpc](https://github.com/grpc/) 实现，需要Python 3.6 or higher
 
-## 快速实现TZRPC
+目前输入只支持字符类型，输出支持一下类型
 
+| TZRPC 类型|python 类型      |   方法 |
+| ---- | ---- | ----|
+|   String   |   str   | toString(text="") |
+|  Integer    |   int   | toInteger(value=1) |
+|    Float  |  float    |toFloat(value=1) |
+|    Double  |  double    |toDouble(value=1) |
+|    Boolean  |  bool    |toBoolean(value=1) |
+|    Numpy  |  numpy    |toNumpy(shape: int, dtype: dtype, data: bytes, strides: int) |
+|    Tensor  |  torch.Tensor   |toTensor(dims: int, data_type: Data_type, float_data: float, int32_data: int, byte_data:bytes, string_data:str, double_data: double, int64_data: int) |
+
+
+## 快速实现TZRPC
+### 安装
+```bash
+pip install -e .
+```
 ### 服务端 Server.py
 ```python 
 from tzrpc.TZRPC import TZRPC

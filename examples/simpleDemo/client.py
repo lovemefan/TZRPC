@@ -8,6 +8,7 @@ from tzrpc.client.client import TZPRC_Client
 from tzrpc.proto.py.String_pb2 import String
 
 
+
 SERVER_ADDRESS = "localhost:8000"
 client = TZPRC_Client(SERVER_ADDRESS)
 
