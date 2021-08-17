@@ -10,7 +10,7 @@
 
 rpc 框架采用采用google的 [grpc](https://github.com/grpc/) 实现，需要Python 3.6 or higher
 
-## 快速实现RPC
+## 快速实现TZRPC
 
 ### 服务端 Server.py
 ```python 

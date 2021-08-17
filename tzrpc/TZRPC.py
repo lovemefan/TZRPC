@@ -3,17 +3,26 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : RPCServer.py
+import logging
 import os
+import traceback
 from asyncio import get_event_loop
 from typing import Optional
+from concurrent import futures
+import grpc
 
 from tzrpc.base import tzrpcBase
+from tzrpc.decorator.rpc import servicers
 from tzrpc.exceptions.exceptions import TZRPCException
+from tzrpc.proto.py.Server_pb2_grpc import add_toObjectServicer_to_server
+
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 
 class TZRPC(tzrpcBase):
     def __init__(self, name):
-        super().__init__(name=name)
+        super().__init__(name)
 
     @property
     def loop(self):
@@ -35,7 +44,6 @@ class TZRPC(tzrpcBase):
             port: Optional[int] = None,
             debug: bool = False,
             workers: int = 1,
-            unix: Optional[str] = None,
             loop: None = None,
     ) -> None:
         """
@@ -71,14 +79,20 @@ class TZRPC(tzrpcBase):
                 )
                 workers = 1
             if workers == 1:
-                serve_single(server_settings)
+                logger.info(f"Tzrpc Server now listening {host}:{port}.")
+                server = grpc.server(futures.ThreadPoolExecutor())
+                for servicer in servicers:
+                    add_toObjectServicer_to_server(servicer, server)
+
+                server.add_insecure_port(f"{host}:{port}")
+                server.start()
+                logger.info(f"Tzrpc Server started.")
+                server.wait_for_termination()
             else:
-                serve_multiple(server_settings, workers)
+                # TODO
+                raise ValueError("it so sorry for muti-process is not available, please set work = 1")
         except BaseException:
-            error_logger.exception(
-                "Experienced exception while trying to serve"
-            )
-            raise
+            traceback.print_exc()
         finally:
             self.is_running = False
         logger.info("Server Stopped")
