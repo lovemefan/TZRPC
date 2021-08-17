@@ -15,10 +15,13 @@ service toObject {
   rpc toBoolean(String) returns (Boolean) {};
   rpc toBytes(String) returns (Bytes) {};
   rpc toNdarray(String) returns (ndarray) {};
-  rpc toNdarrays(String) returns (ndarrays) {};
   rpc toTensor(String) returns (Tensor) {};
-  rpc toTensors(String) returns (Tensors) {};
 
+  rpc ndarrays2Ndarrays(ndarrays) returns (ndarrays) {};
+  rpc tensors2Tensors(Tensors) returns (Tensors) {};
+
+  rpc toNdarrays(String) returns (ndarrays) {};
+  rpc toTensors(String) returns (Tensors) {};
   rpc toIntegerArrayList(String) returns (IntegerArrayList) {};
   rpc toFloatArrayList(String) returns (FloatArrayList) {};
   rpc toDoubleArrayList(String) returns (DoubleArrayList) {};

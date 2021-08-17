@@ -2,12 +2,12 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from tzrpc.proto.py import Boolean_pb2 as Boolean__pb2
-from tzrpc.proto.py import Bytes_pb2 as Bytes__pb2
-from tzrpc.proto.py import Number_pb2 as Number__pb2
-from tzrpc.proto.py import Numpy_pb2 as Numpy__pb2
-from tzrpc.proto.py import String_pb2 as String__pb2
-from tzrpc.proto.py import Tensor_pb2 as Tensor__pb2
+import Boolean_pb2 as Boolean__pb2
+import Bytes_pb2 as Bytes__pb2
+import Number_pb2 as Number__pb2
+import Numpy_pb2 as Numpy__pb2
+import String_pb2 as String__pb2
+import Tensor_pb2 as Tensor__pb2
 
 
 class toObjectStub(object):
@@ -54,15 +54,25 @@ class toObjectStub(object):
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Numpy__pb2.ndarray.FromString,
                 )
-        self.toNdarrays = channel.unary_unary(
-                '/tzrpc.proto.toObject/toNdarrays',
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Numpy__pb2.ndarrays.FromString,
-                )
         self.toTensor = channel.unary_unary(
                 '/tzrpc.proto.toObject/toTensor',
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Tensor__pb2.Tensor.FromString,
+                )
+        self.ndarrays2Ndarrays = channel.unary_unary(
+                '/tzrpc.proto.toObject/ndarrays2Ndarrays',
+                request_serializer=Numpy__pb2.ndarrays.SerializeToString,
+                response_deserializer=Numpy__pb2.ndarrays.FromString,
+                )
+        self.tensors2Tensors = channel.unary_unary(
+                '/tzrpc.proto.toObject/tensors2Tensors',
+                request_serializer=Tensor__pb2.Tensors.SerializeToString,
+                response_deserializer=Tensor__pb2.Tensors.FromString,
+                )
+        self.toNdarrays = channel.unary_unary(
+                '/tzrpc.proto.toObject/toNdarrays',
+                request_serializer=String__pb2.String.SerializeToString,
+                response_deserializer=Numpy__pb2.ndarrays.FromString,
                 )
         self.toTensors = channel.unary_unary(
                 '/tzrpc.proto.toObject/toTensors',
@@ -136,13 +146,25 @@ class toObjectServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def toNdarrays(self, request, context):
+    def toTensor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def toTensor(self, request, context):
+    def ndarrays2Ndarrays(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def tensors2Tensors(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def toNdarrays(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -216,15 +238,25 @@ def add_toObjectServicer_to_server(servicer, server):
                     request_deserializer=String__pb2.String.FromString,
                     response_serializer=Numpy__pb2.ndarray.SerializeToString,
             ),
-            'toNdarrays': grpc.unary_unary_rpc_method_handler(
-                    servicer.toNdarrays,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Numpy__pb2.ndarrays.SerializeToString,
-            ),
             'toTensor': grpc.unary_unary_rpc_method_handler(
                     servicer.toTensor,
                     request_deserializer=String__pb2.String.FromString,
                     response_serializer=Tensor__pb2.Tensor.SerializeToString,
+            ),
+            'ndarrays2Ndarrays': grpc.unary_unary_rpc_method_handler(
+                    servicer.ndarrays2Ndarrays,
+                    request_deserializer=Numpy__pb2.ndarrays.FromString,
+                    response_serializer=Numpy__pb2.ndarrays.SerializeToString,
+            ),
+            'tensors2Tensors': grpc.unary_unary_rpc_method_handler(
+                    servicer.tensors2Tensors,
+                    request_deserializer=Tensor__pb2.Tensors.FromString,
+                    response_serializer=Tensor__pb2.Tensors.SerializeToString,
+            ),
+            'toNdarrays': grpc.unary_unary_rpc_method_handler(
+                    servicer.toNdarrays,
+                    request_deserializer=String__pb2.String.FromString,
+                    response_serializer=Numpy__pb2.ndarrays.SerializeToString,
             ),
             'toTensors': grpc.unary_unary_rpc_method_handler(
                     servicer.toTensors,
@@ -381,23 +413,6 @@ class toObject(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def toNdarrays(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toNdarrays',
-            String__pb2.String.SerializeToString,
-            Numpy__pb2.ndarrays.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def toTensor(request,
             target,
             options=(),
@@ -411,6 +426,57 @@ class toObject(object):
         return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toTensor',
             String__pb2.String.SerializeToString,
             Tensor__pb2.Tensor.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ndarrays2Ndarrays(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/ndarrays2Ndarrays',
+            Numpy__pb2.ndarrays.SerializeToString,
+            Numpy__pb2.ndarrays.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def tensors2Tensors(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/tensors2Tensors',
+            Tensor__pb2.Tensors.SerializeToString,
+            Tensor__pb2.Tensors.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def toNdarrays(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toNdarrays',
+            String__pb2.String.SerializeToString,
+            Numpy__pb2.ndarrays.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
