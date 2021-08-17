@@ -10,7 +10,7 @@
 
 rpc 框架采用采用google的 [grpc](https://github.com/grpc/) 实现，需要Python 3.6 or higher
 
-目前输入只支持字符类型，输出支持一下类型
+目前该项目还不够完善，输入只支持字符类型，输出支持一下类型
 
 | TZRPC 类型|python 类型      |   方法 |
 | ---- | ---- | ----|
