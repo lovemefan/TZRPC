@@ -56,3 +56,7 @@ message ndarray {
     // TODO: enable compression
     // optional bool compressed = X;
 }
+
+message ndarrays {
+    repeated  ndarray ndarray = 1;
+}
