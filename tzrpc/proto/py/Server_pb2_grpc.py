@@ -2,12 +2,12 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import Boolean_pb2 as Boolean__pb2
-import Bytes_pb2 as Bytes__pb2
-import Number_pb2 as Number__pb2
-import Numpy_pb2 as Numpy__pb2
-import String_pb2 as String__pb2
-import Tensor_pb2 as Tensor__pb2
+from tzrpc.proto.py import Boolean_pb2 as Boolean__pb2
+from tzrpc.proto.py import Bytes_pb2 as Bytes__pb2
+from tzrpc.proto.py import Number_pb2 as Number__pb2
+from tzrpc.proto.py import Numpy_pb2 as Numpy__pb2
+from tzrpc.proto.py import String_pb2 as String__pb2
+from tzrpc.proto.py import Tensor_pb2 as Tensor__pb2
 
 
 class toObjectStub(object):

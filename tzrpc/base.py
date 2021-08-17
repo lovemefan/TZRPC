@@ -14,7 +14,7 @@ VALID_NAME = re.compile(r"^[a-zA-Z][a-zA-Z0-9_\-]*$")
 
 
 class tzrpcBase(RpcServicer):
-    def __init__(self, name: str = None, *args, **kwargs) -> None:
+    def __init__(self, name) -> None:
         super().__init__()
         class_name = self.__class__.__name__
 
@@ -34,8 +34,8 @@ class tzrpcBase(RpcServicer):
 
         self.name = name
 
-        for base in TZRPCException.__bases__:
-            base.__init__(self, *args, **kwargs)  # type: ignore
+        # for base in TZRPCException.__bases__:
+        #     base.__init__(self, *args, **kwargs)  # type: ignore
 
     def __str__(self) -> str:
         return f"<{self.__class__.__name__} {self.name}>"
