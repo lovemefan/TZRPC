@@ -28,11 +28,11 @@ class RpcServicer():
             print(args, kwargs)
             self.args = args
             self.kwargs = kwargs
-            task(*args, **kwargs)
+            return task(*args, **kwargs)
         return wrapper
 
     def toString(self, request, context):
-        result = self.task(request)
+        result = self.task(request.text)
         response = String(text=result)
         return response
 

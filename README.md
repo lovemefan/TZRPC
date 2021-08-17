@@ -36,9 +36,9 @@ rpc = TZRPC(__name__)
 
 
 @rpc.register
-def say_hello(response):
-    print(response.text)
-    return "hello world " + response.text
+def say_hello(text):
+    print(text)
+    return "hello world " + text
 
 
 if __name__ == '__main__':
