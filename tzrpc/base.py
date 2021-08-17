@@ -6,13 +6,16 @@
 import re
 from typing import Any
 from warnings import warn
+
+from tzrpc.decorator.rpc import RpcServicer
 from tzrpc.exceptions.exceptions import TZRPCException
 
 VALID_NAME = re.compile(r"^[a-zA-Z][a-zA-Z0-9_\-]*$")
 
 
-class tzrpcBase:
+class tzrpcBase(RpcServicer):
     def __init__(self, name: str = None, *args, **kwargs) -> None:
+        super().__init__()
         class_name = self.__class__.__name__
 
         if name is None:
