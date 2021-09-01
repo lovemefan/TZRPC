@@ -9,9 +9,17 @@ rpc = TZRPC(__name__)
 
 
 @rpc.register
+def say_hello2(text: str):
+    print(text)
+    return "hello world 2" + text
+
+
+@rpc.register
 def say_hello(text: str):
     print(text)
     return "hello world " + text
+
+
 
 
 if __name__ == '__main__':

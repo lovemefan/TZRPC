@@ -34,5 +34,8 @@ class TZPRC_Client:
         return wrapper
 
 
+class Listener:
+    def __init__(self):
+        pass
 
 

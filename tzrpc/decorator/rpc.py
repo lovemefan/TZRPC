@@ -20,9 +20,9 @@ class RpcServicer():
         pass
 
     def register(self, task):
-        self.task = task
+        _listener = Listener(task)
         logger.info(f"Method {task.__name__}() registered.")
-        servicers.append(self)
+        servicers.append(_listener)
 
         def wrapper(*args, **kwargs):
             print(args, kwargs)
@@ -30,6 +30,12 @@ class RpcServicer():
             self.kwargs = kwargs
             return task(*args, **kwargs)
         return wrapper
+
+
+class Listener:
+    def __init__(self, task):
+        self.task = task
+
 
     def toString(self, request, context):
         result = self.task(request.text)

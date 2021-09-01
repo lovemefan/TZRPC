@@ -17,9 +17,6 @@ service toObject {
   rpc toNdarray(String) returns (ndarray) {};
   rpc toTensor(String) returns (Tensor) {};
 
-  rpc ndarrays2Ndarrays(ndarrays) returns (ndarrays) {};
-  rpc tensors2Tensors(Tensors) returns (Tensors) {};
-
   rpc toNdarrays(String) returns (ndarrays) {};
   rpc toTensors(String) returns (Tensors) {};
   rpc toIntegerArrayList(String) returns (IntegerArrayList) {};

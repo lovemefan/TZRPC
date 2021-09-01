@@ -11,12 +11,12 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-import String_pb2 as String__pb2
-import Number_pb2 as Number__pb2
-import Bytes_pb2 as Bytes__pb2
-import Boolean_pb2 as Boolean__pb2
-import Numpy_pb2 as Numpy__pb2
-import Tensor_pb2 as Tensor__pb2
+from tzrpc.proto.py import String_pb2 as String__pb2
+from tzrpc.proto.py import Number_pb2 as Number__pb2
+from tzrpc.proto.py import Bytes_pb2 as Bytes__pb2
+from tzrpc.proto.py import Boolean_pb2 as Boolean__pb2
+from tzrpc.proto.py import Numpy_pb2 as Numpy__pb2
+from tzrpc.proto.py import Tensor_pb2 as Tensor__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -25,7 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0cServer.proto\x12\x0btzrpc.proto\x1a\x0cString.proto\x1a\x0cNumber.proto\x1a\x0b\x42ytes.proto\x1a\rBoolean.proto\x1a\x0bNumpy.proto\x1a\x0cTensor.proto2\xf2\x07\n\x08toObject\x12\x36\n\x08toString\x12\x13.tzrpc.proto.String\x1a\x13.tzrpc.proto.String\"\x00\x12\x38\n\ttoInteger\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.Integer\"\x00\x12\x34\n\x07toFloat\x12\x13.tzrpc.proto.String\x1a\x12.tzrpc.proto.Float\"\x00\x12\x36\n\x08toDouble\x12\x13.tzrpc.proto.String\x1a\x13.tzrpc.proto.Double\"\x00\x12\x38\n\ttoBoolean\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.Boolean\"\x00\x12\x34\n\x07toBytes\x12\x13.tzrpc.proto.String\x1a\x12.tzrpc.proto.Bytes\"\x00\x12\x38\n\ttoNdarray\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.ndarray\"\x00\x12\x36\n\x08toTensor\x12\x13.tzrpc.proto.String\x1a\x13.tzrpc.proto.Tensor\"\x00\x12\x43\n\x11ndarrays2Ndarrays\x12\x15.tzrpc.proto.ndarrays\x1a\x15.tzrpc.proto.ndarrays\"\x00\x12?\n\x0ftensors2Tensors\x12\x14.tzrpc.proto.Tensors\x1a\x14.tzrpc.proto.Tensors\"\x00\x12:\n\ntoNdarrays\x12\x13.tzrpc.proto.String\x1a\x15.tzrpc.proto.ndarrays\"\x00\x12\x38\n\ttoTensors\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.Tensors\"\x00\x12J\n\x12toIntegerArrayList\x12\x13.tzrpc.proto.String\x1a\x1d.tzrpc.proto.IntegerArrayList\"\x00\x12\x46\n\x10toFloatArrayList\x12\x13.tzrpc.proto.String\x1a\x1b.tzrpc.proto.FloatArrayList\"\x00\x12H\n\x11toDoubleArrayList\x12\x13.tzrpc.proto.String\x1a\x1c.tzrpc.proto.DoubleArrayList\"\x00\x12J\n\x12toBooleanArrayList\x12\x13.tzrpc.proto.String\x1a\x1d.tzrpc.proto.BooleanArrayList\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0cServer.proto\x12\x0btzrpc.proto\x1a\x0cString.proto\x1a\x0cNumber.proto\x1a\x0b\x42ytes.proto\x1a\rBoolean.proto\x1a\x0bNumpy.proto\x1a\x0cTensor.proto2\xec\x06\n\x08toObject\x12\x36\n\x08toString\x12\x13.tzrpc.proto.String\x1a\x13.tzrpc.proto.String\"\x00\x12\x38\n\ttoInteger\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.Integer\"\x00\x12\x34\n\x07toFloat\x12\x13.tzrpc.proto.String\x1a\x12.tzrpc.proto.Float\"\x00\x12\x36\n\x08toDouble\x12\x13.tzrpc.proto.String\x1a\x13.tzrpc.proto.Double\"\x00\x12\x38\n\ttoBoolean\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.Boolean\"\x00\x12\x34\n\x07toBytes\x12\x13.tzrpc.proto.String\x1a\x12.tzrpc.proto.Bytes\"\x00\x12\x38\n\ttoNdarray\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.ndarray\"\x00\x12\x36\n\x08toTensor\x12\x13.tzrpc.proto.String\x1a\x13.tzrpc.proto.Tensor\"\x00\x12:\n\ntoNdarrays\x12\x13.tzrpc.proto.String\x1a\x15.tzrpc.proto.ndarrays\"\x00\x12\x38\n\ttoTensors\x12\x13.tzrpc.proto.String\x1a\x14.tzrpc.proto.Tensors\"\x00\x12J\n\x12toIntegerArrayList\x12\x13.tzrpc.proto.String\x1a\x1d.tzrpc.proto.IntegerArrayList\"\x00\x12\x46\n\x10toFloatArrayList\x12\x13.tzrpc.proto.String\x1a\x1b.tzrpc.proto.FloatArrayList\"\x00\x12H\n\x11toDoubleArrayList\x12\x13.tzrpc.proto.String\x1a\x1c.tzrpc.proto.DoubleArrayList\"\x00\x12J\n\x12toBooleanArrayList\x12\x13.tzrpc.proto.String\x1a\x1d.tzrpc.proto.BooleanArrayList\"\x00\x62\x06proto3'
   ,
   dependencies=[String__pb2.DESCRIPTOR,Number__pb2.DESCRIPTOR,Bytes__pb2.DESCRIPTOR,Boolean__pb2.DESCRIPTOR,Numpy__pb2.DESCRIPTOR,Tensor__pb2.DESCRIPTOR,])
 
@@ -43,7 +43,7 @@ _TOOBJECT = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=113,
-  serialized_end=1123,
+  serialized_end=989,
   methods=[
   _descriptor.MethodDescriptor(
     name='toString',
@@ -126,29 +126,9 @@ _TOOBJECT = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
   _descriptor.MethodDescriptor(
-    name='ndarrays2Ndarrays',
-    full_name='tzrpc.proto.toObject.ndarrays2Ndarrays',
-    index=8,
-    containing_service=None,
-    input_type=Numpy__pb2._NDARRAYS,
-    output_type=Numpy__pb2._NDARRAYS,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
-    name='tensors2Tensors',
-    full_name='tzrpc.proto.toObject.tensors2Tensors',
-    index=9,
-    containing_service=None,
-    input_type=Tensor__pb2._TENSORS,
-    output_type=Tensor__pb2._TENSORS,
-    serialized_options=None,
-    create_key=_descriptor._internal_create_key,
-  ),
-  _descriptor.MethodDescriptor(
     name='toNdarrays',
     full_name='tzrpc.proto.toObject.toNdarrays',
-    index=10,
+    index=8,
     containing_service=None,
     input_type=String__pb2._STRING,
     output_type=Numpy__pb2._NDARRAYS,
@@ -158,7 +138,7 @@ _TOOBJECT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='toTensors',
     full_name='tzrpc.proto.toObject.toTensors',
-    index=11,
+    index=9,
     containing_service=None,
     input_type=String__pb2._STRING,
     output_type=Tensor__pb2._TENSORS,
@@ -168,7 +148,7 @@ _TOOBJECT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='toIntegerArrayList',
     full_name='tzrpc.proto.toObject.toIntegerArrayList',
-    index=12,
+    index=10,
     containing_service=None,
     input_type=String__pb2._STRING,
     output_type=Number__pb2._INTEGERARRAYLIST,
@@ -178,7 +158,7 @@ _TOOBJECT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='toFloatArrayList',
     full_name='tzrpc.proto.toObject.toFloatArrayList',
-    index=13,
+    index=11,
     containing_service=None,
     input_type=String__pb2._STRING,
     output_type=Number__pb2._FLOATARRAYLIST,
@@ -188,7 +168,7 @@ _TOOBJECT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='toDoubleArrayList',
     full_name='tzrpc.proto.toObject.toDoubleArrayList',
-    index=14,
+    index=12,
     containing_service=None,
     input_type=String__pb2._STRING,
     output_type=Number__pb2._DOUBLEARRAYLIST,
@@ -198,7 +178,7 @@ _TOOBJECT = _descriptor.ServiceDescriptor(
   _descriptor.MethodDescriptor(
     name='toBooleanArrayList',
     full_name='tzrpc.proto.toObject.toBooleanArrayList',
-    index=15,
+    index=13,
     containing_service=None,
     input_type=String__pb2._STRING,
     output_type=Boolean__pb2._BOOLEANARRAYLIST,
