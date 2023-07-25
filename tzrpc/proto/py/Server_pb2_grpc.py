@@ -13,79 +13,79 @@ from tzrpc.proto.py import Tensor_pb2 as Tensor__pb2
 class toObjectStub(object):
     """Missing associated documentation comment in .proto file."""
 
-    def __init__(self, channel):
+    def __init__(self, channel, suffix=None):
         """Constructor.
 
         Args:
             channel: A grpc.Channel.
         """
         self.toString = channel.unary_unary(
-                '/tzrpc.proto.toObject/toString',
+                '/tzrpc.proto.toObject/toString' if suffix is None else f"/tzrpc.proto.toObject/toString-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=String__pb2.String.FromString,
                 )
         self.toInteger = channel.unary_unary(
-                '/tzrpc.proto.toObject/toInteger',
+                '/tzrpc.proto.toObject/toInteger' if suffix is None else f"/tzrpc.proto.toObject/toInteger-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Number__pb2.Integer.FromString,
                 )
         self.toFloat = channel.unary_unary(
-                '/tzrpc.proto.toObject/toFloat',
+                '/tzrpc.proto.toObject/toFloat' if suffix is None else f"/tzrpc.proto.toObject/toFloat-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Number__pb2.Float.FromString,
                 )
         self.toDouble = channel.unary_unary(
-                '/tzrpc.proto.toObject/toDouble',
+                '/tzrpc.proto.toObject/toDouble' if suffix is None else f"/tzrpc.proto.toObject/toDouble-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Number__pb2.Double.FromString,
                 )
         self.toBoolean = channel.unary_unary(
-                '/tzrpc.proto.toObject/toBoolean',
+                '/tzrpc.proto.toObject/toBoolean' if suffix is None else f"/tzrpc.proto.toObject/toBoolean-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Boolean__pb2.Boolean.FromString,
                 )
         self.toBytes = channel.unary_unary(
-                '/tzrpc.proto.toObject/toBytes',
+                '/tzrpc.proto.toObject/toBytes' if suffix is None else f"/tzrpc.proto.toObject/toBytes-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Bytes__pb2.Bytes.FromString,
                 )
         self.toNdarray = channel.unary_unary(
-                '/tzrpc.proto.toObject/toNdarray',
+                '/tzrpc.proto.toObject/toNdarray' if suffix is None else f"/tzrpc.proto.toObject/toNdarray-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Numpy__pb2.ndarray.FromString,
                 )
         self.toTensor = channel.unary_unary(
-                '/tzrpc.proto.toObject/toTensor',
+                '/tzrpc.proto.toObject/toTensor' if suffix is None else f"/tzrpc.proto.toObject/toTensor-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Tensor__pb2.Tensor.FromString,
                 )
         self.toNdarrays = channel.unary_unary(
-                '/tzrpc.proto.toObject/toNdarrays',
+                '/tzrpc.proto.toObject/toNdarrays' if suffix is None else f"/tzrpc.proto.toObject/toNdarrays-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Numpy__pb2.ndarrays.FromString,
                 )
         self.toTensors = channel.unary_unary(
-                '/tzrpc.proto.toObject/toTensors',
+                '/tzrpc.proto.toObject/toTensors' if suffix is None else f"/tzrpc.proto.toObject/toTensors-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Tensor__pb2.Tensors.FromString,
                 )
         self.toIntegerArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toIntegerArrayList',
+                '/tzrpc.proto.toObject/toIntegerArrayList' if suffix is None else f"/tzrpc.proto.toObject/toIntegerArrayList-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Number__pb2.IntegerArrayList.FromString,
                 )
         self.toFloatArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toFloatArrayList',
+                '/tzrpc.proto.toObject/toFloatArrayList' if suffix is None else f"/tzrpc.proto.toObject/toFloatArrayList-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Number__pb2.FloatArrayList.FromString,
                 )
         self.toDoubleArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toDoubleArrayList',
+                '/tzrpc.proto.toObject/toDoubleArrayList' if suffix is None else f"/tzrpc.proto.toObject/toDoubleArrayList-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Number__pb2.DoubleArrayList.FromString,
                 )
         self.toBooleanArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toBooleanArrayList',
+                '/tzrpc.proto.toObject/toBooleanArrayList' if suffix is None else f"/tzrpc.proto.toObject/toBooleanArrayList-{suffix}",
                 request_serializer=String__pb2.String.SerializeToString,
                 response_deserializer=Boolean__pb2.BooleanArrayList.FromString,
                 )
@@ -179,8 +179,8 @@ class toObjectServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_toObjectServicer_to_server(servicer, server):
-    rpc_method_handlers = {
+def add_toObjectServicer_to_server(servicer, server, suffix=None):
+    _tmp_rpc_method_handlers = {
             'toString': grpc.unary_unary_rpc_method_handler(
                     servicer.toString,
                     request_deserializer=String__pb2.String.FromString,
@@ -252,6 +252,12 @@ def add_toObjectServicer_to_server(servicer, server):
                     response_serializer=Boolean__pb2.BooleanArrayList.SerializeToString,
             ),
     }
+
+    rpc_method_handlers = dict()
+    for key, value in _tmp_rpc_method_handlers.items():
+        key = key if suffix is None else f"{key}-{suffix}"
+        rpc_method_handlers[key] = value
+
     generic_handler = grpc.method_handlers_generic_handler(
             'tzrpc.proto.toObject', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
