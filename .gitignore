@@ -1,1 +1,27 @@
-/venv_win/
+/venv/
+/config/config.ini
+__pycache__
+log
+*.bak
+*-bak
+*bak.py
+.idea/*
+# Ignore Mac system files
+.DS_store
+
+# Ignore node_modules folder
+node_modules
+doc/build
+
+# Ignore all text files
+*.txt
+
+# Ignore files related to API keys
+.env
+
+# Ignore SASS config files
+.sass-cache
+
+*.param
+*.bin
+.DS_Store
