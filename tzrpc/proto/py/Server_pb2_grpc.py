@@ -20,75 +20,103 @@ class toObjectStub(object):
             channel: A grpc.Channel.
         """
         self.toString = channel.unary_unary(
-                '/tzrpc.proto.toObject/toString' if suffix is None else f"/tzrpc.proto.toObject/toString-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=String__pb2.String.FromString,
-                )
+            "/tzrpc.proto.toObject/toString"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toString-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=String__pb2.String.FromString,
+        )
         self.toInteger = channel.unary_unary(
-                '/tzrpc.proto.toObject/toInteger' if suffix is None else f"/tzrpc.proto.toObject/toInteger-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Number__pb2.Integer.FromString,
-                )
+            "/tzrpc.proto.toObject/toInteger"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toInteger-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Number__pb2.Integer.FromString,
+        )
         self.toFloat = channel.unary_unary(
-                '/tzrpc.proto.toObject/toFloat' if suffix is None else f"/tzrpc.proto.toObject/toFloat-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Number__pb2.Float.FromString,
-                )
+            "/tzrpc.proto.toObject/toFloat"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toFloat-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Number__pb2.Float.FromString,
+        )
         self.toDouble = channel.unary_unary(
-                '/tzrpc.proto.toObject/toDouble' if suffix is None else f"/tzrpc.proto.toObject/toDouble-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Number__pb2.Double.FromString,
-                )
+            "/tzrpc.proto.toObject/toDouble"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toDouble-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Number__pb2.Double.FromString,
+        )
         self.toBoolean = channel.unary_unary(
-                '/tzrpc.proto.toObject/toBoolean' if suffix is None else f"/tzrpc.proto.toObject/toBoolean-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Boolean__pb2.Boolean.FromString,
-                )
+            "/tzrpc.proto.toObject/toBoolean"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toBoolean-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Boolean__pb2.Boolean.FromString,
+        )
         self.toBytes = channel.unary_unary(
-                '/tzrpc.proto.toObject/toBytes' if suffix is None else f"/tzrpc.proto.toObject/toBytes-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Bytes__pb2.Bytes.FromString,
-                )
+            "/tzrpc.proto.toObject/toBytes"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toBytes-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Bytes__pb2.Bytes.FromString,
+        )
         self.toNdarray = channel.unary_unary(
-                '/tzrpc.proto.toObject/toNdarray' if suffix is None else f"/tzrpc.proto.toObject/toNdarray-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Numpy__pb2.ndarray.FromString,
-                )
+            "/tzrpc.proto.toObject/toNdarray"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toNdarray-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Numpy__pb2.ndarray.FromString,
+        )
         self.toTensor = channel.unary_unary(
-                '/tzrpc.proto.toObject/toTensor' if suffix is None else f"/tzrpc.proto.toObject/toTensor-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Tensor__pb2.Tensor.FromString,
-                )
+            "/tzrpc.proto.toObject/toTensor"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toTensor-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Tensor__pb2.Tensor.FromString,
+        )
         self.toNdarrays = channel.unary_unary(
-                '/tzrpc.proto.toObject/toNdarrays' if suffix is None else f"/tzrpc.proto.toObject/toNdarrays-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Numpy__pb2.ndarrays.FromString,
-                )
+            "/tzrpc.proto.toObject/toNdarrays"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toNdarrays-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Numpy__pb2.ndarrays.FromString,
+        )
         self.toTensors = channel.unary_unary(
-                '/tzrpc.proto.toObject/toTensors' if suffix is None else f"/tzrpc.proto.toObject/toTensors-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Tensor__pb2.Tensors.FromString,
-                )
+            "/tzrpc.proto.toObject/toTensors"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toTensors-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Tensor__pb2.Tensors.FromString,
+        )
         self.toIntegerArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toIntegerArrayList' if suffix is None else f"/tzrpc.proto.toObject/toIntegerArrayList-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Number__pb2.IntegerArrayList.FromString,
-                )
+            "/tzrpc.proto.toObject/toIntegerArrayList"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toIntegerArrayList-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Number__pb2.IntegerArrayList.FromString,
+        )
         self.toFloatArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toFloatArrayList' if suffix is None else f"/tzrpc.proto.toObject/toFloatArrayList-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Number__pb2.FloatArrayList.FromString,
-                )
+            "/tzrpc.proto.toObject/toFloatArrayList"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toFloatArrayList-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Number__pb2.FloatArrayList.FromString,
+        )
         self.toDoubleArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toDoubleArrayList' if suffix is None else f"/tzrpc.proto.toObject/toDoubleArrayList-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Number__pb2.DoubleArrayList.FromString,
-                )
+            "/tzrpc.proto.toObject/toDoubleArrayList"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toDoubleArrayList-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Number__pb2.DoubleArrayList.FromString,
+        )
         self.toBooleanArrayList = channel.unary_unary(
-                '/tzrpc.proto.toObject/toBooleanArrayList' if suffix is None else f"/tzrpc.proto.toObject/toBooleanArrayList-{suffix}",
-                request_serializer=String__pb2.String.SerializeToString,
-                response_deserializer=Boolean__pb2.BooleanArrayList.FromString,
-                )
+            "/tzrpc.proto.toObject/toBooleanArrayList"
+            if suffix is None
+            else f"/tzrpc.proto.toObject/toBooleanArrayList-{suffix}",
+            request_serializer=String__pb2.String.SerializeToString,
+            response_deserializer=Boolean__pb2.BooleanArrayList.FromString,
+        )
 
 
 class toObjectServicer(object):
@@ -97,160 +125,160 @@ class toObjectServicer(object):
     def toString(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toInteger(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toFloat(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toDouble(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toBoolean(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toBytes(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toNdarray(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toTensor(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toNdarrays(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toTensors(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toIntegerArrayList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toFloatArrayList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toDoubleArrayList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
     def toBooleanArrayList(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
 
 
 def add_toObjectServicer_to_server(servicer, server, suffix=None):
     _tmp_rpc_method_handlers = {
-            'toString': grpc.unary_unary_rpc_method_handler(
-                    servicer.toString,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=String__pb2.String.SerializeToString,
-            ),
-            'toInteger': grpc.unary_unary_rpc_method_handler(
-                    servicer.toInteger,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Number__pb2.Integer.SerializeToString,
-            ),
-            'toFloat': grpc.unary_unary_rpc_method_handler(
-                    servicer.toFloat,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Number__pb2.Float.SerializeToString,
-            ),
-            'toDouble': grpc.unary_unary_rpc_method_handler(
-                    servicer.toDouble,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Number__pb2.Double.SerializeToString,
-            ),
-            'toBoolean': grpc.unary_unary_rpc_method_handler(
-                    servicer.toBoolean,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Boolean__pb2.Boolean.SerializeToString,
-            ),
-            'toBytes': grpc.unary_unary_rpc_method_handler(
-                    servicer.toBytes,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Bytes__pb2.Bytes.SerializeToString,
-            ),
-            'toNdarray': grpc.unary_unary_rpc_method_handler(
-                    servicer.toNdarray,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Numpy__pb2.ndarray.SerializeToString,
-            ),
-            'toTensor': grpc.unary_unary_rpc_method_handler(
-                    servicer.toTensor,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Tensor__pb2.Tensor.SerializeToString,
-            ),
-            'toNdarrays': grpc.unary_unary_rpc_method_handler(
-                    servicer.toNdarrays,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Numpy__pb2.ndarrays.SerializeToString,
-            ),
-            'toTensors': grpc.unary_unary_rpc_method_handler(
-                    servicer.toTensors,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Tensor__pb2.Tensors.SerializeToString,
-            ),
-            'toIntegerArrayList': grpc.unary_unary_rpc_method_handler(
-                    servicer.toIntegerArrayList,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Number__pb2.IntegerArrayList.SerializeToString,
-            ),
-            'toFloatArrayList': grpc.unary_unary_rpc_method_handler(
-                    servicer.toFloatArrayList,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Number__pb2.FloatArrayList.SerializeToString,
-            ),
-            'toDoubleArrayList': grpc.unary_unary_rpc_method_handler(
-                    servicer.toDoubleArrayList,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Number__pb2.DoubleArrayList.SerializeToString,
-            ),
-            'toBooleanArrayList': grpc.unary_unary_rpc_method_handler(
-                    servicer.toBooleanArrayList,
-                    request_deserializer=String__pb2.String.FromString,
-                    response_serializer=Boolean__pb2.BooleanArrayList.SerializeToString,
-            ),
+        "toString": grpc.unary_unary_rpc_method_handler(
+            servicer.toString,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=String__pb2.String.SerializeToString,
+        ),
+        "toInteger": grpc.unary_unary_rpc_method_handler(
+            servicer.toInteger,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Number__pb2.Integer.SerializeToString,
+        ),
+        "toFloat": grpc.unary_unary_rpc_method_handler(
+            servicer.toFloat,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Number__pb2.Float.SerializeToString,
+        ),
+        "toDouble": grpc.unary_unary_rpc_method_handler(
+            servicer.toDouble,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Number__pb2.Double.SerializeToString,
+        ),
+        "toBoolean": grpc.unary_unary_rpc_method_handler(
+            servicer.toBoolean,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Boolean__pb2.Boolean.SerializeToString,
+        ),
+        "toBytes": grpc.unary_unary_rpc_method_handler(
+            servicer.toBytes,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Bytes__pb2.Bytes.SerializeToString,
+        ),
+        "toNdarray": grpc.unary_unary_rpc_method_handler(
+            servicer.toNdarray,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Numpy__pb2.ndarray.SerializeToString,
+        ),
+        "toTensor": grpc.unary_unary_rpc_method_handler(
+            servicer.toTensor,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Tensor__pb2.Tensor.SerializeToString,
+        ),
+        "toNdarrays": grpc.unary_unary_rpc_method_handler(
+            servicer.toNdarrays,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Numpy__pb2.ndarrays.SerializeToString,
+        ),
+        "toTensors": grpc.unary_unary_rpc_method_handler(
+            servicer.toTensors,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Tensor__pb2.Tensors.SerializeToString,
+        ),
+        "toIntegerArrayList": grpc.unary_unary_rpc_method_handler(
+            servicer.toIntegerArrayList,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Number__pb2.IntegerArrayList.SerializeToString,
+        ),
+        "toFloatArrayList": grpc.unary_unary_rpc_method_handler(
+            servicer.toFloatArrayList,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Number__pb2.FloatArrayList.SerializeToString,
+        ),
+        "toDoubleArrayList": grpc.unary_unary_rpc_method_handler(
+            servicer.toDoubleArrayList,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Number__pb2.DoubleArrayList.SerializeToString,
+        ),
+        "toBooleanArrayList": grpc.unary_unary_rpc_method_handler(
+            servicer.toBooleanArrayList,
+            request_deserializer=String__pb2.String.FromString,
+            response_serializer=Boolean__pb2.BooleanArrayList.SerializeToString,
+        ),
     }
 
     rpc_method_handlers = dict()
@@ -259,248 +287,417 @@ def add_toObjectServicer_to_server(servicer, server, suffix=None):
         rpc_method_handlers[key] = value
 
     generic_handler = grpc.method_handlers_generic_handler(
-            'tzrpc.proto.toObject', rpc_method_handlers)
+        "tzrpc.proto.toObject", rpc_method_handlers
+    )
     server.add_generic_rpc_handlers((generic_handler,))
 
 
- # This class is part of an EXPERIMENTAL API.
+# This class is part of an EXPERIMENTAL API.
 class toObject(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def toString(request,
+    def toString(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toString',
+            "/tzrpc.proto.toObject/toString",
             String__pb2.String.SerializeToString,
             String__pb2.String.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toInteger(request,
+    def toInteger(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toInteger',
+            "/tzrpc.proto.toObject/toInteger",
             String__pb2.String.SerializeToString,
             Number__pb2.Integer.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toFloat(request,
+    def toFloat(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toFloat',
+            "/tzrpc.proto.toObject/toFloat",
             String__pb2.String.SerializeToString,
             Number__pb2.Float.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toDouble(request,
+    def toDouble(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toDouble',
+            "/tzrpc.proto.toObject/toDouble",
             String__pb2.String.SerializeToString,
             Number__pb2.Double.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toBoolean(request,
+    def toBoolean(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toBoolean',
+            "/tzrpc.proto.toObject/toBoolean",
             String__pb2.String.SerializeToString,
             Boolean__pb2.Boolean.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toBytes(request,
+    def toBytes(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toBytes',
+            "/tzrpc.proto.toObject/toBytes",
             String__pb2.String.SerializeToString,
             Bytes__pb2.Bytes.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toNdarray(request,
+    def toNdarray(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toNdarray',
+            "/tzrpc.proto.toObject/toNdarray",
             String__pb2.String.SerializeToString,
             Numpy__pb2.ndarray.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toTensor(request,
+    def toTensor(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toTensor',
+            "/tzrpc.proto.toObject/toTensor",
             String__pb2.String.SerializeToString,
             Tensor__pb2.Tensor.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toNdarrays(request,
+    def toNdarrays(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toNdarrays',
+            "/tzrpc.proto.toObject/toNdarrays",
             String__pb2.String.SerializeToString,
             Numpy__pb2.ndarrays.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toTensors(request,
+    def toTensors(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toTensors',
+            "/tzrpc.proto.toObject/toTensors",
             String__pb2.String.SerializeToString,
             Tensor__pb2.Tensors.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toIntegerArrayList(request,
+    def toIntegerArrayList(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toIntegerArrayList',
+            "/tzrpc.proto.toObject/toIntegerArrayList",
             String__pb2.String.SerializeToString,
             Number__pb2.IntegerArrayList.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toFloatArrayList(request,
+    def toFloatArrayList(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toFloatArrayList',
+            "/tzrpc.proto.toObject/toFloatArrayList",
             String__pb2.String.SerializeToString,
             Number__pb2.FloatArrayList.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toDoubleArrayList(request,
+    def toDoubleArrayList(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toDoubleArrayList',
+            "/tzrpc.proto.toObject/toDoubleArrayList",
             String__pb2.String.SerializeToString,
             Number__pb2.DoubleArrayList.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
 
     @staticmethod
-    def toBooleanArrayList(request,
+    def toBooleanArrayList(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
             target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/tzrpc.proto.toObject/toBooleanArrayList',
+            "/tzrpc.proto.toObject/toBooleanArrayList",
             String__pb2.String.SerializeToString,
             Boolean__pb2.BooleanArrayList.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )

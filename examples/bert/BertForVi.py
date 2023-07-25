@@ -18,10 +18,11 @@ class BertForVietnamese(BertBase):
         self.phobert = AutoModel.from_pretrained("vinai/phobert-base")
 
         # For transformers v4.x+:
-        self.tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base", use_fast=False)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            "vinai/phobert-base", use_fast=False
+        )
 
     def output(self, input: str):
-
         input_ids = torch.tensor([self.tokenizer.encode(input)])
 
         with torch.no_grad():
@@ -29,7 +30,7 @@ class BertForVietnamese(BertBase):
         return features
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     line = "Tôi là sinh_viên trường đại_học Công_nghệ ."
     vi = BertForVietnamese()
     out = vi.output(line)

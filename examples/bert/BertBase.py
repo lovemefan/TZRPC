@@ -3,7 +3,7 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : BertBase.py
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta, abstractmethod
 
 
 class BertBase(metaclass=ABCMeta):

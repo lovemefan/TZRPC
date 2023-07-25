@@ -5,17 +5,17 @@
 # @File : rpc.py
 import logging
 
-from tzrpc.proto.py import Server_pb2
-from tzrpc.proto.py.Server_pb2_grpc import toObjectServicer
 from tzrpc.proto.py.String_pb2 import String
 
 servicers = []
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s",
+)
 logger = logging.getLogger(__name__)
 
 
-class RpcServicer():
-
+class RpcServicer:
     def __init__(self):
         pass
 
@@ -32,6 +32,7 @@ class RpcServicer():
             self.args = args
             self.kwargs = kwargs
             return task(*args, **kwargs)
+
         return wrapper
 
 
@@ -55,8 +56,8 @@ class Listener:
     def String(self, func):
         def wrapper(*args, **kwargs):
             return func(*args, **kwargs)
-        return wrapper
 
+        return wrapper
 
     def toInteger(self, request, context):
         pass
@@ -95,5 +96,4 @@ class Listener:
         pass
 
     def toBooleanArrayList(self, request, context):
-
         pass

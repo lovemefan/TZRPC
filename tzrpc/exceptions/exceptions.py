@@ -12,4 +12,3 @@ class TZRPCException(Exception):
         message: Optional[Union[str, bytes]] = "",
     ) -> None:
         super().__init__(message)
-
