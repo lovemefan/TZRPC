@@ -21,11 +21,14 @@ class RpcServicer():
 
     def register(self, task):
         _listener = Listener(task)
-        logger.info(f"Method {task.__name__}() registered.")
+        # print(_listener)
+        logger.info(f"Instance {_listener}  appended")
+        logger.info(f"Instance's task  {_listener.task} ")
         servicers.append(_listener)
 
         def wrapper(*args, **kwargs):
             print(args, kwargs)
+            print(f"{task.__name__}: text")
             self.args = args
             self.kwargs = kwargs
             return task(*args, **kwargs)
@@ -34,14 +37,20 @@ class RpcServicer():
 
 class Listener:
     def __init__(self, task):
+        logger.debug(f"Method {task} {task.__name__}() registered.")
         self.task = task
+        logger.debug(f"self Method {self.task} {task.__name__}() registered.")
 
+    def wrapper(self, *args, **kwargs):
+        print(args, kwargs)
+        print(f"{self.task.__name__}: text")
+        return self.task(*args, **kwargs)
 
     def toString(self, request, context):
+        logger.debug(f"Method {self.task} {self.task.__name__}() called.")
         result = self.task(request.text)
         response = String(text=result)
         return response
-
 
     def String(self, func):
         def wrapper(*args, **kwargs):
