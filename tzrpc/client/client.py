@@ -29,7 +29,7 @@ class TZPRC_Client:
         #     raise ValueError(f"TZRPC return type only support {self.__type}")
 
         def wrapper(*args, **kwargs):
-            stub = toObjectStub(self.channel)
+            stub = toObjectStub(self.channel, func.__name__)
             func(stub=stub, *args, **kwargs)
         return wrapper
 
