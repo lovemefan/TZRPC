@@ -3,24 +3,25 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : server.py
-from tzrpc.TZRPC import TZRPC
+from tzrpc import TZRPC_Server
 
-rpc = TZRPC(__name__)
+server = TZRPC_Server(__name__)
 
 
-@rpc.register
+@server.register
 def say_hello2(text: str):
-    print(text)
-    return "hello world 2" + text
+    return "hello world 2 " + text
 
 
-@rpc.register
+@server.register
 def say_hello(text: str):
-    print(text)
     return "hello world " + text
 
 
+@server.register
+def say_hello3(text: str):
+    return "hello world 3 " + text
 
 
-if __name__ == '__main__':
-    rpc.run("localhost", 8000)
+if __name__ == "__main__":
+    server.run("localhost", 8000)

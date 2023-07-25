@@ -4,27 +4,29 @@
 # @Email : lovemefan@outlook.com
 # @File : client.py
 
-from tzrpc.client.client import TZPRC_Client
-from tzrpc.proto.py.String_pb2 import String
+from tzrpc import TZPRC_Client
 
 SERVER_ADDRESS = "localhost:8000"
 client = TZPRC_Client(SERVER_ADDRESS)
 
 
 @client.register
-def say_hello2(stub, text):
-    request = String(text=text)
-    response = stub.toString(request)
-    print(response.text)
+def say_hello2(text):
+    return text
 
 
 @client.register
-def say_hello(stub, text):
-    request = String(text=text)
-    response = stub.toString(request)
-    print(response.text)
+def say_hello3(text):
+    return text
 
 
-if __name__ == '__main__':
-    say_hello(text="lovemefan")
-    say_hello2(text="lovemefan")
+@client.register
+def say_hello(text):
+    return text
+
+
+if __name__ == "__main__":
+    print(say_hello(text="lovemefan 1"))
+    print(say_hello(text="lovemefan 1"))
+    print(say_hello2(text="lovemefan 2"))
+    print(say_hello3(text="lovemefan 2"))

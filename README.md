@@ -29,8 +29,9 @@ rpc 框架采用采用google的 [grpc](https://github.com/grpc/) 实现，需要
 pip install -e .
 ```
 ### 服务端 Server.py
+
 ```python 
-from tzrpc.TZRPC import TZRPC
+from tzrpc.server.server import TZRPC
 
 rpc = TZRPC(__name__)
 

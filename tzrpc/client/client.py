@@ -4,16 +4,20 @@
 # @Email : lovemefan@outlook.com
 # @File : client.py
 import logging
+
 import grpc
 
 from tzrpc.proto.py.Server_pb2_grpc import toObjectStub
+from tzrpc.proto.py.String_pb2 import String
 
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO,
+    format="[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s",
+)
 logger = logging.getLogger(__name__)
 
 
 class TZPRC_Client:
-
     __type = ["String", "Integer", "Float", "Double", "Boolean", "Numpy", "Tensor"]
 
     def __init__(self, server_address: str):
@@ -30,12 +34,16 @@ class TZPRC_Client:
 
         def wrapper(*args, **kwargs):
             stub = toObjectStub(self.channel, func.__name__)
-            func(stub=stub, *args, **kwargs)
+            result = func(*args, **kwargs)
+            if isinstance(result, str):
+                request = String(text=result)
+
+            response = stub.toString(request)
+            return response
+
         return wrapper
 
 
 class Listener:
     def __init__(self):
         pass
-
-
