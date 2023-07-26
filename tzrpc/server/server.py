@@ -3,7 +3,7 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : RPCServer.py
-import logging
+
 import os
 import traceback
 from asyncio import get_event_loop
@@ -16,12 +16,9 @@ from tzrpc.decorator.rpc import servicers
 from tzrpc.exceptions.exceptions import TZRPCException
 from tzrpc.proto.py.Server_pb2_grpc import add_toObjectServicer_to_server
 from tzrpc.server.base import tzrpcBase
+from tzrpc.utils.logger import get_logger
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s",
-)
-logger = logging.getLogger(__name__)
+logger = get_logger(to_std=True, stdout_level="DEBUG", save_log_file=False)
 
 
 class TZRPC_Server(tzrpcBase):
