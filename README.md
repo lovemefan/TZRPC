@@ -16,7 +16,7 @@
 > 深度学习模型在落地时需要提供高效快速交互接口，业务逻辑和深度模型解码通常运行在不同类型的机器上。
 Http 并不适合大量数据的交互，而RPC (Remote Procedure Call) 远程过程调用, 而RPC在TCP层实现。提高了开发效率，算法工程师可以不必花费更多精力放在具体的接口实现上，而是专注于算法优化上。
 
-tzrpc 框架基于google的 [grpc](https://github.com/grpc/) 实现，需要Python 3.6 or higher
+tzrpc 框架基于google的 [grpc](https://github.com/grpc/) 实现，需要Python 3.7及以上
 
 目前支持以下基础类型：
 
