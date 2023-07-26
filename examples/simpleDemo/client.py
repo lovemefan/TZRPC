@@ -4,6 +4,8 @@
 # @Email : lovemefan@outlook.com
 # @File : client.py
 
+import numpy as np
+
 from tzrpc import TZPRC_Client
 
 SERVER_ADDRESS = "localhost:8000"
@@ -16,8 +18,10 @@ def say_hello2(text):
 
 
 @client.register
-def say_hello3(text):
-    return text
+def send_numpy_obj():
+    data = np.array([[1, 2, 3], [4, 5, 6]])
+    print(data)
+    return data
 
 
 @client.register
@@ -26,7 +30,7 @@ def say_hello(text):
 
 
 if __name__ == "__main__":
-    print(say_hello(text="lovemefan 1"))
-    print(say_hello(text="lovemefan 1"))
+    # print(say_hello(text="lovemefan 1"))
+    # print(say_hello(text="lovemefan 1"))
     print(say_hello2(text="lovemefan 2"))
-    print(say_hello3(text="lovemefan 2"))
+    print(send_numpy_obj())
