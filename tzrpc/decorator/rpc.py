@@ -3,16 +3,19 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : rpc.py
-import logging
 
+
+from tzrpc.proto.py.Boolean_pb2 import Boolean
+from tzrpc.proto.py.Bytes_pb2 import Bytes
+from tzrpc.proto.py.Number_pb2 import Double, Float, Integer
+from tzrpc.proto.py.Numpy_pb2 import ndarrays
 from tzrpc.proto.py.String_pb2 import String
+from tzrpc.utils.logger import get_logger
+from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
 
 servicers = []
-logging.basicConfig(
-    level=logging.INFO,
-    format="[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s",
-)
-logger = logging.getLogger(__name__)
+
+logger = get_logger(to_std=True, stdout_level="DEBUG", save_log_file=False)
 
 
 class RpcServicer:
@@ -22,8 +25,7 @@ class RpcServicer:
     def register(self, task):
         _listener = Listener(task)
         # print(_listener)
-        logger.info(f"Instance {_listener}  appended")
-        logger.info(f"Instance's task  {_listener.task} ")
+        logger.debug(f"Instance's task  {_listener.task} registered")
         servicers.append(_listener)
 
         def wrapper(*args, **kwargs):
@@ -48,37 +50,53 @@ class Listener:
         return self.task(*args, **kwargs)
 
     def toString(self, request, context):
-        logger.debug(f"Method {self.task} {self.task.__name__}() called.")
+        logger.debug(f"Method toString({request}) called.")
         result = self.task(request.text)
         response = String(text=result)
         return response
 
-    def String(self, func):
-        def wrapper(*args, **kwargs):
-            return func(*args, **kwargs)
-
-        return wrapper
-
     def toInteger(self, request, context):
-        pass
+        logger.debug(f"Method toInteger({request}, {context}) called.")
+        result = self.task(request.value)
+        response = Integer(value=result)
+        return response
 
     def toFloat(self, request, context):
-        pass
+        logger.debug(f"Method toFloat({request}, {context}) called.")
+        result = self.task(request.value)
+        response = Float(value=result)
+        return response
 
     def toDouble(self, request, context):
-        pass
+        logger.debug(f"Method toDouble({request}, {context}) called.")
+        result = self.task(request.value)
+        response = Double(value=result)
+        return response
 
     def toBoolean(self, request, context):
-        pass
+        logger.debug(f"Method toBoolean({request}, {context}) called.")
+        result = self.task(request.value)
+        response = Boolean(value=result)
+        return response
 
     def toBytes(self, request, context):
-        pass
+        logger.debug(f"Method toBytes({request}, {context}) called.")
+        result = self.task(request.value)
+        response = Bytes(value=result)
+        return response
 
     def toNdarray(self, request, context):
-        pass
+        logger.debug(f"Method toNdarray({request}) called.")
+        value = protobuf2numpy(request)
+        data = self.task(value)
+        response = numpy2protobuf(data)
+        return response
 
     def toNdarrays(self, request, context):
-        pass
+        logger.debug(f"Method toNdarrays({request}) called.")
+        _ndarray = self.task(request.value)
+        response = ndarrays(ndarray=_ndarray)
+        return response
 
     def toTensor(self, request, context):
         pass
