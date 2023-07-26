@@ -78,7 +78,8 @@ def send_numpy_obj():
 
 
 if __name__ == '__main__':
-    print(say_hello(text="lovemefan"))
+    print(say_hello("lovemefan"))
+    print(send_numpy_obj())
 ```
 
 ### 客户端输出
