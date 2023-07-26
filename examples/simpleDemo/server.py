@@ -3,14 +3,15 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : server.py
+
 from tzrpc import TZRPC_Server
 
 server = TZRPC_Server(__name__)
 
 
 @server.register
-def say_hello2(text: str):
-    return "hello world 2 " + text
+def send_numpy_obj(data):
+    return data * 2 + 1
 
 
 @server.register
@@ -19,7 +20,7 @@ def say_hello(text: str):
 
 
 @server.register
-def say_hello3(text: str):
+def say_hello2(text: str):
     return "hello world 3 " + text
 
 
