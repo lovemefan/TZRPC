@@ -6,9 +6,11 @@
 import logging
 
 import grpc
+import numpy
 
 from tzrpc.proto.py.Server_pb2_grpc import toObjectStub
 from tzrpc.proto.py.String_pb2 import String
+from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
 
 logging.basicConfig(
     level=logging.INFO,
@@ -37,13 +39,12 @@ class TZPRC_Client:
             result = func(*args, **kwargs)
             if isinstance(result, str):
                 request = String(text=result)
+                response = stub.toString(request).text
 
-            response = stub.toString(request)
+            elif isinstance(result, numpy.ndarray):
+                request = numpy2protobuf(result)
+                response = protobuf2numpy(stub.toNdarray(request))
+
             return response
 
         return wrapper
-
-
-class Listener:
-    def __init__(self):
-        pass
