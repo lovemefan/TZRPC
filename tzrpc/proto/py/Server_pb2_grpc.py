@@ -19,102 +19,75 @@ class toObjectStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        suffix = suffix or ""
         self.toString = channel.unary_unary(
-            "/tzrpc.proto.toObject/toString"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toString-{suffix}",
+            f"/tzrpc.proto.toObject/toString-{suffix}",
             request_serializer=String__pb2.String.SerializeToString,
             response_deserializer=String__pb2.String.FromString,
         )
         self.toInteger = channel.unary_unary(
-            "/tzrpc.proto.toObject/toInteger"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toInteger-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toInteger-{suffix}",
+            request_serializer=Number__pb2.Integer.SerializeToString,
             response_deserializer=Number__pb2.Integer.FromString,
         )
         self.toFloat = channel.unary_unary(
-            "/tzrpc.proto.toObject/toFloat"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toFloat-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toFloat-{suffix}",
+            request_serializer=Number__pb2.Float.SerializeToString,
             response_deserializer=Number__pb2.Float.FromString,
         )
         self.toDouble = channel.unary_unary(
-            "/tzrpc.proto.toObject/toDouble"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toDouble-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toDouble-{suffix}",
+            request_serializer=Number__pb2.Double.SerializeToString,
             response_deserializer=Number__pb2.Double.FromString,
         )
         self.toBoolean = channel.unary_unary(
-            "/tzrpc.proto.toObject/toBoolean"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toBoolean-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toBoolean-{suffix}",
+            request_serializer=Boolean__pb2.Boolean.SerializeToString,
             response_deserializer=Boolean__pb2.Boolean.FromString,
         )
         self.toBytes = channel.unary_unary(
-            "/tzrpc.proto.toObject/toBytes"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toBytes-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toBytes-{suffix}",
+            request_serializer=Bytes__pb2.Bytes.SerializeToString,
             response_deserializer=Bytes__pb2.Bytes.FromString,
         )
         self.toNdarray = channel.unary_unary(
-            "/tzrpc.proto.toObject/toNdarray"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toNdarray-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toNdarray-{suffix}",
+            request_serializer=Numpy__pb2.ndarray.SerializeToString,
             response_deserializer=Numpy__pb2.ndarray.FromString,
         )
         self.toTensor = channel.unary_unary(
-            "/tzrpc.proto.toObject/toTensor"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toTensor-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toTensor-{suffix}",
+            request_serializer=Tensor__pb2.Tensor.SerializeToString,
             response_deserializer=Tensor__pb2.Tensor.FromString,
         )
         self.toNdarrays = channel.unary_unary(
-            "/tzrpc.proto.toObject/toNdarrays"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toNdarrays-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toNdarrays-{suffix}",
+            request_serializer=Numpy__pb2.ndarrays.SerializeToString,
             response_deserializer=Numpy__pb2.ndarrays.FromString,
         )
         self.toTensors = channel.unary_unary(
-            "/tzrpc.proto.toObject/toTensors"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toTensors-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toTensors-{suffix}",
+            request_serializer=Tensor__pb2.Tensors.SerializeToString,
             response_deserializer=Tensor__pb2.Tensors.FromString,
         )
         self.toIntegerArrayList = channel.unary_unary(
-            "/tzrpc.proto.toObject/toIntegerArrayList"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toIntegerArrayList-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toIntegerArrayList-{suffix}",
+            request_serializer=Number__pb2.IntegerArrayList.SerializeToString,
             response_deserializer=Number__pb2.IntegerArrayList.FromString,
         )
         self.toFloatArrayList = channel.unary_unary(
-            "/tzrpc.proto.toObject/toFloatArrayList"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toFloatArrayList-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toFloatArrayList-{suffix}",
+            request_serializer=Number__pb2.FloatArrayList.SerializeToString,
             response_deserializer=Number__pb2.FloatArrayList.FromString,
         )
         self.toDoubleArrayList = channel.unary_unary(
-            "/tzrpc.proto.toObject/toDoubleArrayList"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toDoubleArrayList-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toDoubleArrayList-{suffix}",
+            request_serializer=Number__pb2.DoubleArrayList.SerializeToString,
             response_deserializer=Number__pb2.DoubleArrayList.FromString,
         )
         self.toBooleanArrayList = channel.unary_unary(
-            "/tzrpc.proto.toObject/toBooleanArrayList"
-            if suffix is None
-            else f"/tzrpc.proto.toObject/toBooleanArrayList-{suffix}",
-            request_serializer=String__pb2.String.SerializeToString,
+            f"/tzrpc.proto.toObject/toBooleanArrayList-{suffix}",
+            request_serializer=Boolean__pb2.BooleanArrayList.SerializeToString,
             response_deserializer=Boolean__pb2.BooleanArrayList.FromString,
         )
 
@@ -216,67 +189,67 @@ def add_toObjectServicer_to_server(servicer, server, suffix=None):
         ),
         "toInteger": grpc.unary_unary_rpc_method_handler(
             servicer.toInteger,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Number__pb2.Integer.FromString,
             response_serializer=Number__pb2.Integer.SerializeToString,
         ),
         "toFloat": grpc.unary_unary_rpc_method_handler(
             servicer.toFloat,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Number__pb2.Float.FromString,
             response_serializer=Number__pb2.Float.SerializeToString,
         ),
         "toDouble": grpc.unary_unary_rpc_method_handler(
             servicer.toDouble,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Number__pb2.Double.FromString,
             response_serializer=Number__pb2.Double.SerializeToString,
         ),
         "toBoolean": grpc.unary_unary_rpc_method_handler(
             servicer.toBoolean,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Boolean__pb2.Boolean.FromString,
             response_serializer=Boolean__pb2.Boolean.SerializeToString,
         ),
         "toBytes": grpc.unary_unary_rpc_method_handler(
             servicer.toBytes,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Bytes__pb2.Bytes.FromString,
             response_serializer=Bytes__pb2.Bytes.SerializeToString,
         ),
         "toNdarray": grpc.unary_unary_rpc_method_handler(
             servicer.toNdarray,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Numpy__pb2.ndarray.FromString,
             response_serializer=Numpy__pb2.ndarray.SerializeToString,
         ),
         "toTensor": grpc.unary_unary_rpc_method_handler(
             servicer.toTensor,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Tensor__pb2.Tensor.FromString,
             response_serializer=Tensor__pb2.Tensor.SerializeToString,
         ),
         "toNdarrays": grpc.unary_unary_rpc_method_handler(
             servicer.toNdarrays,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Numpy__pb2.ndarrays.FromString,
             response_serializer=Numpy__pb2.ndarrays.SerializeToString,
         ),
         "toTensors": grpc.unary_unary_rpc_method_handler(
             servicer.toTensors,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Tensor__pb2.Tensors.FromString,
             response_serializer=Tensor__pb2.Tensors.SerializeToString,
         ),
         "toIntegerArrayList": grpc.unary_unary_rpc_method_handler(
             servicer.toIntegerArrayList,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Number__pb2.IntegerArrayList.FromString,
             response_serializer=Number__pb2.IntegerArrayList.SerializeToString,
         ),
         "toFloatArrayList": grpc.unary_unary_rpc_method_handler(
             servicer.toFloatArrayList,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Number__pb2.FloatArrayList.FromString,
             response_serializer=Number__pb2.FloatArrayList.SerializeToString,
         ),
         "toDoubleArrayList": grpc.unary_unary_rpc_method_handler(
             servicer.toDoubleArrayList,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Number__pb2.DoubleArrayList.FromString,
             response_serializer=Number__pb2.DoubleArrayList.SerializeToString,
         ),
         "toBooleanArrayList": grpc.unary_unary_rpc_method_handler(
             servicer.toBooleanArrayList,
-            request_deserializer=String__pb2.String.FromString,
+            request_deserializer=Boolean__pb2.BooleanArrayList.FromString,
             response_serializer=Boolean__pb2.BooleanArrayList.SerializeToString,
         ),
     }
@@ -342,7 +315,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toInteger",
-            String__pb2.String.SerializeToString,
+            Number__pb2.Integer.SerializeToString,
             Number__pb2.Integer.FromString,
             options,
             channel_credentials,
@@ -371,7 +344,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toFloat",
-            String__pb2.String.SerializeToString,
+            Number__pb2.Float.SerializeToString,
             Number__pb2.Float.FromString,
             options,
             channel_credentials,
@@ -400,7 +373,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toDouble",
-            String__pb2.String.SerializeToString,
+            Number__pb2.Double.SerializeToString,
             Number__pb2.Double.FromString,
             options,
             channel_credentials,
@@ -429,7 +402,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toBoolean",
-            String__pb2.String.SerializeToString,
+            Boolean__pb2.Boolean.SerializeToString,
             Boolean__pb2.Boolean.FromString,
             options,
             channel_credentials,
@@ -458,7 +431,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toBytes",
-            String__pb2.String.SerializeToString,
+            Bytes__pb2.Bytes.SerializeToString,
             Bytes__pb2.Bytes.FromString,
             options,
             channel_credentials,
@@ -487,7 +460,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toNdarray",
-            String__pb2.String.SerializeToString,
+            Numpy__pb2.ndarray.SerializeToString,
             Numpy__pb2.ndarray.FromString,
             options,
             channel_credentials,
@@ -516,7 +489,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toTensor",
-            String__pb2.String.SerializeToString,
+            Tensor__pb2.Tensor.SerializeToString,
             Tensor__pb2.Tensor.FromString,
             options,
             channel_credentials,
@@ -545,7 +518,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toNdarrays",
-            String__pb2.String.SerializeToString,
+            Numpy__pb2.ndarrays.SerializeToString,
             Numpy__pb2.ndarrays.FromString,
             options,
             channel_credentials,
@@ -574,7 +547,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toTensors",
-            String__pb2.String.SerializeToString,
+            Tensor__pb2.Tensors.SerializeToString,
             Tensor__pb2.Tensors.FromString,
             options,
             channel_credentials,
@@ -603,7 +576,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toIntegerArrayList",
-            String__pb2.String.SerializeToString,
+            Number__pb2.IntegerArrayList.SerializeToString,
             Number__pb2.IntegerArrayList.FromString,
             options,
             channel_credentials,
@@ -632,7 +605,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toFloatArrayList",
-            String__pb2.String.SerializeToString,
+            Number__pb2.FloatArrayList.SerializeToString,
             Number__pb2.FloatArrayList.FromString,
             options,
             channel_credentials,
@@ -661,7 +634,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toDoubleArrayList",
-            String__pb2.String.SerializeToString,
+            Number__pb2.DoubleArrayList.SerializeToString,
             Number__pb2.DoubleArrayList.FromString,
             options,
             channel_credentials,
@@ -690,7 +663,7 @@ class toObject(object):
             request,
             target,
             "/tzrpc.proto.toObject/toBooleanArrayList",
-            String__pb2.String.SerializeToString,
+            Boolean__pb2.BooleanArrayList.SerializeToString,
             Boolean__pb2.BooleanArrayList.FromString,
             options,
             channel_credentials,
