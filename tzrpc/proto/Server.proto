@@ -9,19 +9,19 @@ import "Tensor.proto";
 
 service toObject {
   rpc toString(String) returns (String) {};
-  rpc toInteger(String) returns (Integer) {};
-  rpc toFloat(String) returns (Float) {};
-  rpc toDouble(String) returns (Double) {};
-  rpc toBoolean(String) returns (Boolean) {};
-  rpc toBytes(String) returns (Bytes) {};
-  rpc toNdarray(String) returns (ndarray) {};
-  rpc toTensor(String) returns (Tensor) {};
+  rpc toInteger(Integer) returns (Integer) {};
+  rpc toFloat(Float) returns (Float) {};
+  rpc toDouble(Double) returns (Double) {};
+  rpc toBoolean(Boolean) returns (Boolean) {};
+  rpc toBytes(Bytes) returns (Bytes) {};
+  rpc toNdarray(ndarray) returns (ndarray) {};
+  rpc toTensor(Tensor) returns (Tensor) {};
 
-  rpc toNdarrays(String) returns (ndarrays) {};
-  rpc toTensors(String) returns (Tensors) {};
-  rpc toIntegerArrayList(String) returns (IntegerArrayList) {};
-  rpc toFloatArrayList(String) returns (FloatArrayList) {};
-  rpc toDoubleArrayList(String) returns (DoubleArrayList) {};
-  rpc toBooleanArrayList(String) returns (BooleanArrayList) {};
+  rpc toNdarrays(ndarrays) returns (ndarrays) {};
+  rpc toTensors(Tensors) returns (Tensors) {};
+  rpc toIntegerArrayList(IntegerArrayList) returns (IntegerArrayList) {};
+  rpc toFloatArrayList(FloatArrayList) returns (FloatArrayList) {};
+  rpc toDoubleArrayList(DoubleArrayList) returns (DoubleArrayList) {};
+  rpc toBooleanArrayList(BooleanArrayList) returns (BooleanArrayList) {};
 }
 
