@@ -7,4 +7,4 @@
 from .client.client import TZPRC_Client
 from .server.server import TZRPC_Server
 
-__all__ = ['TZRPC_Server', 'TZPRC_Client']
+__all__ = ["TZRPC_Server", "TZPRC_Client"]
