@@ -15,6 +15,11 @@ def send_numpy_obj(data):
 
 
 @server.register
+def send_torch_tensor_obj(data):
+    return data @ data.T
+
+
+@server.register
 def say_hello(text: str):
     return "hello world " + text
 

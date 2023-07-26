@@ -6,7 +6,8 @@
 import logging
 
 import grpc
-import numpy
+import numpy as np
+import torch
 
 from tzrpc.proto.py.Server_pb2_grpc import toObjectStub
 from tzrpc.proto.py.String_pb2 import String
@@ -20,7 +21,16 @@ logger = logging.getLogger(__name__)
 
 
 class TZPRC_Client:
-    __type = ["String", "Integer", "Float", "Double", "Boolean", "Numpy", "Tensor"]
+    __type = [str, np.ndarray]
+    tensor_type =  None
+    try:
+        import torch
+        tensor_type = torch.Tensor
+        __type.append(torch.Tensor)
+    except ImportError:
+        logger.info("""
+        Please pip install torch to get tensor support
+        """)
 
     def __init__(self, server_address: str):
         self.server_address = server_address
@@ -41,9 +51,12 @@ class TZPRC_Client:
                 request = String(text=result)
                 response = stub.toString(request).text
 
-            elif isinstance(result, numpy.ndarray):
+            elif isinstance(result, np.ndarray):
                 request = numpy2protobuf(result)
                 response = protobuf2numpy(stub.toNdarray(request))
+            elif self.tensor_type is not None and isinstance(result, self.tensor_type):
+                request = numpy2protobuf(result.numpy())
+                response = torch.from_numpy(protobuf2numpy(stub.toNdarray(request)).copy())
 
             return response
 

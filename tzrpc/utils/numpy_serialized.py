@@ -18,6 +18,7 @@ BYTE_ORDER_DICT_REVERSE = {value: key for key, value in BYTE_ORDER_DICT.items()}
 
 DATA_TYPE_DICT = {
     "float64": dtype.Type.float64,
+    "float32": dtype.Type.float32,
     "float16": dtype.Type.float16,
     "complex128": dtype.Type.complex128,
     "complex64": dtype.Type.complex64,

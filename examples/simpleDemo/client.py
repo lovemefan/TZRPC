@@ -5,7 +5,7 @@
 # @File : client.py
 
 import numpy as np
-
+import torch
 from tzrpc import TZPRC_Client
 
 SERVER_ADDRESS = "localhost:8000"
@@ -20,7 +20,12 @@ def say_hello2(text):
 @client.register
 def send_numpy_obj():
     data = np.array([[1, 2, 3], [4, 5, 6]])
-    print(data)
+    return data
+
+
+@client.register
+def send_torch_tensor_obj():
+    data = torch.tensor([[1, 2, 3], [4, 5, 6]])
     return data
 
 
@@ -34,3 +39,4 @@ if __name__ == "__main__":
     # print(say_hello(text="lovemefan 1"))
     print(say_hello2(text="lovemefan 2"))
     print(send_numpy_obj())
+    print(send_torch_tensor_obj())
