@@ -3,9 +3,11 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : client.py
+import numbers
 
 import numpy as np
 import torch
+
 from tzrpc import TZPRC_Client
 
 SERVER_ADDRESS = "localhost:8000"
@@ -34,9 +36,22 @@ def say_hello(text):
     return text
 
 
+@client.register
+def send_bytes():
+    return b"just for test"
+
+
+@client.register
+def send_number(data: numbers.Number):
+    return data
+
+
 if __name__ == "__main__":
     # print(say_hello(text="lovemefan 1"))
     # print(say_hello(text="lovemefan 1"))
     print(say_hello2(text="lovemefan 2"))
     print(send_numpy_obj())
     print(send_torch_tensor_obj())
+    print(send_bytes())
+    print(send_number(2))
+    print(send_number(1/3))

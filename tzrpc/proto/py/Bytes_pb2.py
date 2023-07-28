@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     syntax="proto3",
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
-    serialized_pb=b'\n\x0b\x42ytes.proto\x12\x0btzrpc.proto"\x15\n\x05\x42ytes\x12\x0c\n\x04\x64\x61ta\x18\x01 \x03(\x0c\x62\x06proto3',
+    serialized_pb=b'\n\x0b\x42ytes.proto\x12\x0btzrpc.proto"\x15\n\x05\x42ytes\x12\x0c\n\x04\x64\x61ta\x18\x01 \x01(\x0c\x62\x06proto3',
 )
 
 
@@ -37,9 +37,9 @@ _BYTES = _descriptor.Descriptor(
             number=1,
             type=12,
             cpp_type=9,
-            label=3,
+            label=1,
             has_default_value=False,
-            default_value=[],
+            default_value=b"",
             message_type=None,
             enum_type=None,
             containing_type=None,

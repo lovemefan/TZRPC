@@ -1,6 +1,7 @@
 syntax = "proto3";
 package tzrpc.proto;
 
+
 message Bytes {
-  repeated bytes data = 1;
+  bytes data = 1;
 }

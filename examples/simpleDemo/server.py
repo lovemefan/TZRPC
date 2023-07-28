@@ -3,6 +3,7 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : server.py
+import numbers
 
 from tzrpc import TZRPC_Server
 
@@ -29,5 +30,15 @@ def say_hello2(text: str):
     return "hello world 3 " + text
 
 
+@server.register
+def send_bytes(data: bytes):
+    return data + data
+
+
+@server.register
+def send_number(data: numbers.Number):
+    return data * 2
+
 if __name__ == "__main__":
     server.run("localhost", 8000)
+

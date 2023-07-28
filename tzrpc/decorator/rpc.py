@@ -81,8 +81,8 @@ class Listener:
 
     def toBytes(self, request, context):
         logger.debug(f"Method toBytes({request}, {context}) called.")
-        result = self.task(request.value)
-        response = Bytes(value=result)
+        result = self.task(request.data)
+        response = Bytes(data=result)
         return response
 
     def toNdarray(self, request, context):

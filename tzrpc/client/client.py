@@ -4,11 +4,13 @@
 # @Email : lovemefan@outlook.com
 # @File : client.py
 import logging
+import numbers
 
 import grpc
 import numpy as np
 import torch
 
+from tzrpc.proto.py.Bytes_pb2 import Bytes
 from tzrpc.proto.py.Server_pb2_grpc import toObjectStub
 from tzrpc.proto.py.String_pb2 import String
 from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
@@ -21,16 +23,19 @@ logger = logging.getLogger(__name__)
 
 
 class TZPRC_Client:
-    __type = [str, np.ndarray]
-    tensor_type =  None
+    __type = [str, np.ndarray, bytes, numbers.Number]
+    tensor_type = None
     try:
         import torch
+
         tensor_type = torch.Tensor
         __type.append(torch.Tensor)
     except ImportError:
-        logger.info("""
+        logger.info(
+            """
         Please pip install torch to get tensor support
-        """)
+        """
+        )
 
     def __init__(self, server_address: str):
         self.server_address = server_address
@@ -54,9 +59,17 @@ class TZPRC_Client:
             elif isinstance(result, np.ndarray):
                 request = numpy2protobuf(result)
                 response = protobuf2numpy(stub.toNdarray(request))
+            elif isinstance(result, bytes):
+                request = Bytes(data=result)
+                response = stub.toBytes(request).data
+            elif isinstance(result, numbers.Number):
+                request = Bytes(data=result)
+                response = stub.toBytes(request).data
             elif self.tensor_type is not None and isinstance(result, self.tensor_type):
                 request = numpy2protobuf(result.numpy())
-                response = torch.from_numpy(protobuf2numpy(stub.toNdarray(request)).copy())
+                response = torch.from_numpy(
+                    protobuf2numpy(stub.toNdarray(request)).copy()
+                )
 
             return response
 
