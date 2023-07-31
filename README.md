@@ -36,6 +36,11 @@ tzrpc 框架基于google的 [grpc](https://github.com/grpc/) 实现，需要Pyth
 ## 快速使用
 ### 安装
 ```bash
+pip install tzrpc
+```
+
+或拉取最新代码，安装
+```bash
 git clone https://github.com/lovemefan/TZRPC.git
 cd TZRPC
 pip install -e .
