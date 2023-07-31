@@ -57,16 +57,16 @@ def send_python_obj(obj):
 
 
 if __name__ == "__main__":
-    # print(say_hello(text="lovemefan 1"))
-    # print(say_hello(text="lovemefan 1"))
-    # print(say_hello2(text="lovemefan 2"))
-    # print(send_numpy_obj())
-    # print(send_torch_tensor_obj())
-    # print(send_bytes())
-    # print(send_number(2))
-    # print(send_number(1/3))
-    # print(send_bool(True))
-    # print(send_bool(False))
+    print(say_hello(text="lovemefan 1"))
+    print(say_hello(text="lovemefan 1"))
+    print(say_hello2(text="lovemefan 2"))
+    print(send_numpy_obj())
+    print(send_torch_tensor_obj())
+    print(send_bytes())
+    print(send_number(2))
+    print(send_number(1/3))
+    print(send_bool(True))
+    print(send_bool(False))
     class testOb:
         def __init__(self, name, age):
             self.name = name
