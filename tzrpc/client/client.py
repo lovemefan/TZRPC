@@ -5,12 +5,15 @@
 # @File : client.py
 import logging
 import numbers
+import pickle
 
 import grpc
 import numpy as np
 import torch
 
+from tzrpc.proto.py.Boolean_pb2 import Boolean
 from tzrpc.proto.py.Bytes_pb2 import Bytes
+from tzrpc.proto.py.Number_pb2 import Double, Integer
 from tzrpc.proto.py.Server_pb2_grpc import toObjectStub
 from tzrpc.proto.py.String_pb2 import String
 from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
@@ -23,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 
 class TZPRC_Client:
-    __type = [str, np.ndarray, bytes, numbers.Number]
+    __type = [str, np.ndarray, bytes, numbers.Number, bool]
     tensor_type = None
     try:
         import torch
@@ -62,14 +65,27 @@ class TZPRC_Client:
             elif isinstance(result, bytes):
                 request = Bytes(data=result)
                 response = stub.toBytes(request).data
+            elif isinstance(result, bool):
+                request = Boolean(value=result)
+                response = bool(stub.toBoolean(request).value)
             elif isinstance(result, numbers.Number):
-                request = Bytes(data=result)
-                response = stub.toBytes(request).data
+                if isinstance(result, int):
+                    request = Integer(value=result)
+                    response = stub.toInteger(request).value
+                elif isinstance(result, float):
+                    request = Double(value=result)
+                    response = stub.toDouble(request).value
+                else:
+                    logger.exception(f"Type of {type(result)} is not support")
             elif self.tensor_type is not None and isinstance(result, self.tensor_type):
                 request = numpy2protobuf(result.numpy())
                 response = torch.from_numpy(
                     protobuf2numpy(stub.toNdarray(request)).copy()
                 )
+            else:
+                obj = pickle.dumps(result)
+                request = Bytes(data=obj)
+                response = pickle.loads(stub.toBytes(request).data)
 
             return response
 

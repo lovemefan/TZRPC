@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     syntax="proto3",
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
-    serialized_pb=b'\n\x0cNumber.proto\x12\x0btzrpc.proto"\x18\n\x07Integer\x12\r\n\x05value\x18\x01 \x01(\x05"\x16\n\x05\x46loat\x12\r\n\x05value\x18\x01 \x01(\x02"\x17\n\x06\x44ouble\x12\r\n\x05value\x18\x01 \x01(\x01"!\n\x10IntegerArrayList\x12\r\n\x05value\x18\x01 \x03(\x05"\x1f\n\x0e\x46loatArrayList\x12\r\n\x05value\x18\x01 \x03(\x02" \n\x0f\x44oubleArrayList\x12\r\n\x05value\x18\x01 \x03(\x01\x62\x06proto3',
+    serialized_pb=b'\n\x0cNumber.proto\x12\x0btzrpc.proto"\x18\n\x07Integer\x12\r\n\x05value\x18\x01 \x01(\x03"\x16\n\x05\x46loat\x12\r\n\x05value\x18\x01 \x01(\x02"\x17\n\x06\x44ouble\x12\r\n\x05value\x18\x01 \x01(\x01"!\n\x10IntegerArrayList\x12\r\n\x05value\x18\x01 \x03(\x05"\x1f\n\x0e\x46loatArrayList\x12\r\n\x05value\x18\x01 \x03(\x02" \n\x0f\x44oubleArrayList\x12\r\n\x05value\x18\x01 \x03(\x01\x62\x06proto3',
 )
 
 
@@ -35,8 +35,8 @@ _INTEGER = _descriptor.Descriptor(
             full_name="tzrpc.proto.Integer.value",
             index=0,
             number=1,
-            type=5,
-            cpp_type=1,
+            type=3,
+            cpp_type=2,
             label=1,
             has_default_value=False,
             default_value=0,

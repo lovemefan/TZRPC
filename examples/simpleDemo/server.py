@@ -39,6 +39,16 @@ def send_bytes(data: bytes):
 def send_number(data: numbers.Number):
     return data * 2
 
+
+@server.register
+def send_bool(_bool: bool):
+    return not _bool
+
+
+@server.register
+def send_python_obj(data):
+    return data
+
+
 if __name__ == "__main__":
     server.run("localhost", 8000)
-
