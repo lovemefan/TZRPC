@@ -64,9 +64,10 @@ if __name__ == "__main__":
     print(send_torch_tensor_obj())
     print(send_bytes())
     print(send_number(2))
-    print(send_number(1/3))
+    print(send_number(1 / 3))
     print(send_bool(True))
     print(send_bool(False))
+
     class testOb:
         def __init__(self, name, age):
             self.name = name
