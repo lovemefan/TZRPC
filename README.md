@@ -20,15 +20,17 @@ tzrpc 框架基于google的 [grpc](https://github.com/grpc/) 实现，需要Pyth
 
 目前支持以下基础类型：
 
-| TZRPC 类型|python 类型      | 是否支持 |
-| ---- | ---- |-------------|
-|   String   |   str   |  ✅ |
-|  Integer    |   int   |  |
-|    Float  |  float    |  |
-|    Double  |  double    |  |
-|    Boolean  |  bool    |   |
-|    Numpy  |  numpy    | ✅ |
-|    Tensor  |  torch.Tensor   | ✅|
+| TZRPC 类型       | python 类型    | 是否支持 |
+|----------------|--------------|-----|
+| String         | str          | ✅   |
+| Integer        | int          | ✅   |
+| Float          | float        | ✅   |
+| Double         | float        | ✅   |
+| Boolean        | bool         | ✅   |
+| Bytes          | bytes        | ✅   |
+| Numpy          | numpy        | ✅   |
+| Tensor         | torch.Tensor | ✅   |
+| 使用pickle模块反序列化 | 任意python对象   |     |
 
 
 ## 快速使用
@@ -42,7 +44,7 @@ pip install -e .
 
 ```python 
 from tzrpc import TZRPC_Server
-
+import numbers
 server = TZRPC_Server(__name__)
 
 
@@ -58,6 +60,23 @@ def send_numpy_obj(data):
 def send_torch_tensor_obj(data):
     return data @ data.T
 
+@server.register
+def send_bytes(data: bytes):
+    return data + data
+
+@server.register
+def send_number(data: numbers.Number):
+    return data * 2
+
+
+@server.register
+def send_bool(_bool: bool):
+    return not _bool
+
+
+@server.register
+def send_python_obj(data):
+    return data
 
 if __name__ == '__main__':
     server.run("localhost", 8000)
@@ -68,6 +87,7 @@ if __name__ == '__main__':
 from tzrpc import TZPRC_Client
 import numpy as np
 import torch
+import numbers
 SERVER_ADDRESS = "localhost:8000"
 client = TZPRC_Client(SERVER_ADDRESS)
 
@@ -86,12 +106,40 @@ def send_torch_tensor_obj():
     data = torch.tensor([[1, 2, 3], [4, 5, 6]])
     return data
 
+@client.register
+def send_bytes():
+    return b"just for test"
 
+@client.register
+def send_number(data: numbers.Number):
+    return data
+
+
+@client.register
+def send_bool(_bool: bool):
+    return _bool
+
+@client.register
+def send_python_obj(data):
+    return data
 
 if __name__ == '__main__':
     print(say_hello("lovemefan"))
     print(send_numpy_obj())
     print(send_torch_tensor_obj())
+    print(send_bytes())
+    print(send_number(2))
+    print(send_number(1/3))
+    print(send_bool(True))
+    print(send_bool(False))
+    
+    class testOb:
+        def __init__(self, name, age):
+            self.name = name
+            self.age = age
+
+    python_obj = testOb("test_name", 20)
+    print(send_python_obj(python_obj).__dict__)
 ```
 
 ### 客户端输出
@@ -103,4 +151,16 @@ hello world lovemefan
  
 tensor([[14, 32],
         [32, 77]])
+        
+b'just for testjust for test'
+
+4
+
+0.6666666666666666
+
+False
+
+True
+
+{'name': 'test_name', 'age': 20}
 ```
