@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: github.repository == '$GITHUB_REPO'
+    if: github.repository == 'lovemefan/TZRPC'
     runs-on: ubuntu-18.04
 
     steps:
