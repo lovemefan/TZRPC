@@ -8,6 +8,14 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+requirements = {
+    "install": [
+        "grpcio==1.40.0",
+        "grpcio-tools==1.40.0",
+        "numpy"
+    ]
+}
+
 setuptools.setup(
     name="tzrpc",
     version="0.0.1",
