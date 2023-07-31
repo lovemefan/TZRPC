@@ -30,7 +30,7 @@ tzrpc 框架基于google的 [grpc](https://github.com/grpc/) 实现，需要Pyth
 | Bytes          | bytes        | ✅   |
 | Numpy          | numpy        | ✅   |
 | Tensor         | torch.Tensor | ✅   |
-| 使用pickle模块反序列化 | 任意python对象   |     |
+| 使用pickle模块反序列化 | 任意python对象   | ✅    |
 
 
 ## 快速使用
