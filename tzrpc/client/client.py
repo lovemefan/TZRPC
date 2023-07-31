@@ -9,7 +9,6 @@ import pickle
 
 import grpc
 import numpy as np
-import torch
 
 from tzrpc.proto.py.Boolean_pb2 import Boolean
 from tzrpc.proto.py.Bytes_pb2 import Bytes
@@ -23,6 +22,13 @@ logging.basicConfig(
     format="[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
+
+try:
+    import torch
+except ImportError:
+    print(
+        "if you want use torch, please install torch with command `pip install torch` "
+    )
 
 
 class TZPRC_Client:
