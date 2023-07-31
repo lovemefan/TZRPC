@@ -19,15 +19,17 @@ requirements = {
 setuptools.setup(
     name="tzrpc",
     version="0.0.1",
-    author="lovemefan",
+    author="Lovemefan, Yunnan Key Laboratory of Artificial Intelligence, "
+           "Kunming University of Science and Technology, Kunming, Yunnan ",
     author_email="lovemefan@outlook.com",
     description="a rpc framework for python base on grpc",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/lovemefan/TZRPC",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_namespace_packages(),
+    install_requires=requirements,
+    python_requires=">=3.7.0",
     classifiers=[
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
