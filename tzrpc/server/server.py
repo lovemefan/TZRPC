@@ -16,6 +16,7 @@ from tzrpc.decorator.rpc import servicers
 from tzrpc.exceptions.exceptions import TZRPCException
 from tzrpc.proto.py.Server_pb2_grpc import add_toObjectServicer_to_server
 from tzrpc.server.base import tzrpcBase
+from tzrpc.utils.constant import MAX_MESSAGE_LENGTH
 from tzrpc.utils.logger import get_logger
 
 logger = get_logger(to_std=True, stdout_level="DEBUG", save_log_file=False)
@@ -81,7 +82,10 @@ class TZRPC_Server(tzrpcBase):
                 workers = 1
             if workers == 1:
                 logger.info(f"Tzrpc Server now listening {host}:{port}.")
-                server = grpc.server(futures.ThreadPoolExecutor())
+                server = grpc.server(futures.ThreadPoolExecutor(),
+                                     [('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
+                                      ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH)]
+                                     )
                 for servicer in servicers:
                     add_toObjectServicer_to_server(
                         servicer, server, servicer.task.__name__

@@ -16,3 +16,5 @@ SUPPORT_TYPE = {
     "Ndarray": ndarray,
     "Tensor": Tensor,
 }
+
+MAX_MESSAGE_LENGTH = 100*1024*1024
