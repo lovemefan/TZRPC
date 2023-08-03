@@ -3,7 +3,7 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : RPCServer.py
-
+import logging
 import os
 import traceback
 from asyncio import get_event_loop
@@ -23,7 +23,10 @@ logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
 
 
 class TZRPC_Server(tzrpcBase):
-    def __init__(self, name):
+    def __init__(self, name, debug=False):
+        if debug:
+            logger.setLevel(logging.DEBUG)
+
         super().__init__(name)
 
     @property

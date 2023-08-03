@@ -16,13 +16,10 @@ from tzrpc.proto.py.Number_pb2 import Double, Integer
 from tzrpc.proto.py.Server_pb2_grpc import toObjectStub
 from tzrpc.proto.py.String_pb2 import String
 from tzrpc.utils.constant import MAX_MESSAGE_LENGTH
+from tzrpc.utils.logger import get_logger
 from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="[%(asctime)s]  - %(levelname)s - %(threadName)s - %(module)s.%(funcName)s - %(message)s",
-)
-logger = logging.getLogger(__name__)
+logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
 
 try:
     import torch
@@ -47,7 +44,9 @@ class TZPRC_Client:
         """
         )
 
-    def __init__(self, server_address: str):
+    def __init__(self, server_address: str, debug=False):
+        if debug:
+            logger.setLevel(logging.DEBUG)
         self.server_address = server_address
         self.channel = grpc.insecure_channel(server_address,
                                              options=[('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
