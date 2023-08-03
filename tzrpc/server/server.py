@@ -83,7 +83,7 @@ class TZRPC_Server(tzrpcBase):
             if workers == 1:
                 logger.info(f"Tzrpc Server now listening {host}:{port}.")
                 server = grpc.server(futures.ThreadPoolExecutor(),
-                                     [('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
+                                     options=[('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
                                       ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH)]
                                      )
                 for servicer in servicers:
