@@ -19,7 +19,7 @@ from tzrpc.server.base import tzrpcBase
 from tzrpc.utils.constant import MAX_MESSAGE_LENGTH
 from tzrpc.utils.logger import get_logger
 
-logger = get_logger(to_std=True, stdout_level="DEBUG", save_log_file=False)
+logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
 
 
 class TZRPC_Server(tzrpcBase):

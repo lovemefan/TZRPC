@@ -15,7 +15,7 @@ from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
 
 servicers = []
 
-logger = get_logger(to_std=True, stdout_level="DEBUG", save_log_file=False)
+logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
 
 
 class RpcServicer:
@@ -40,7 +40,7 @@ class RpcServicer:
 
 class Listener:
     def __init__(self, task):
-        logger.debug(f"Method {task} {task.__name__}() registered.")
+        logger.info(f"Method {task} {task.__name__}() registered.")
         self.task = task
         logger.debug(f"self Method {self.task} {task.__name__}() registered.")
 
