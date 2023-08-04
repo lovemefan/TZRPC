@@ -92,6 +92,7 @@ class TZPRC_Client:
                     protobuf2numpy(stub.toNdarray(request)).copy()
                 )
             else:
+                logger.info(f"Data will serialized by pickle and send with bytes")
                 obj = pickle.dumps(result)
                 request = Bytes(data=obj)
                 response = pickle.loads(stub.toBytes(request).data)

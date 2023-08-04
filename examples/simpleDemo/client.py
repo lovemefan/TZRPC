@@ -21,7 +21,7 @@ def say_hello2(text):
 
 @client.register
 def send_numpy_obj():
-    data = np.array([[1, 2, 3], [4, 5, 6]])
+    data = np.random.randn(1, 2, 2, 4)
     return data
 
 
@@ -74,4 +74,4 @@ if __name__ == "__main__":
             self.age = age
 
     python_obj = testOb("test_name", 20)
-    print(send_python_obj(python_obj).__dict__)
+    print(send_python_obj(python_obj))
