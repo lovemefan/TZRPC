@@ -3,7 +3,7 @@
 # @Author : lovemefan
 # @Email : lovemefan@outlook.com
 # @File : rpc.py
-
+import pickle
 
 from tzrpc.proto.py.Boolean_pb2 import Boolean
 from tzrpc.proto.py.Bytes_pb2 import Bytes
@@ -81,7 +81,14 @@ class Listener:
 
     def toBytes(self, request, context):
         logger.debug(f"Method toBytes({request}, {context}) called.")
-        result = self.task(request.data)
+        data = request.data
+        is_pickled = True if b"PICKLE" in data[:6] else False
+
+        if is_pickled:
+            data = pickle.loads(data[6:])
+        result = self.task(data)
+        if is_pickled:
+            result = pickle.dumps(result)
         response = Bytes(data=result)
         return response
 
