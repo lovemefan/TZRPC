@@ -16,7 +16,7 @@ from tzrpc.decorator.rpc import servicers
 from tzrpc.exceptions.exceptions import TZRPCException
 from tzrpc.proto.py.Server_pb2_grpc import add_toObjectServicer_to_server
 from tzrpc.server.base import tzrpcBase
-from tzrpc.utils.constant import MAX_MESSAGE_LENGTH
+from tzrpc.utils.constant import MAX_MESSAGE_LENGTH, MAX_METADATA_SIZE
 from tzrpc.utils.logger import get_logger
 
 logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
@@ -25,7 +25,8 @@ logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
 class TZRPC_Server(tzrpcBase):
     def __init__(self, name, debug=False):
         if debug:
-            logger.setLevel(logging.DEBUG)
+            get_logger(to_std=True, stdout_level="DEBUG" if debug else "INFO", save_log_file=False)\
+                .setLevel(logging.DEBUG)
 
         super().__init__(name)
 
@@ -73,7 +74,7 @@ class TZRPC_Server(tzrpcBase):
             )
 
         host, port = host or "127.0.0.1", port or 8000
-
+        get_logger(to_std=True, stdout_level="DEBUG" if debug else "INFO", save_log_file=False)
         try:
             self.is_running = True
             self.is_stopping = False
@@ -87,7 +88,8 @@ class TZRPC_Server(tzrpcBase):
                 logger.info(f"Tzrpc Server now listening {host}:{port}.")
                 server = grpc.server(futures.ThreadPoolExecutor(),
                                      options=[('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
-                                      ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH)]
+                                      ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
+                                              ('grpc.max_metadata_size', MAX_METADATA_SIZE)]
                                      )
                 for servicer in servicers:
                     add_toObjectServicer_to_server(

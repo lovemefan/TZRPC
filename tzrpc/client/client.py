@@ -15,7 +15,7 @@ from tzrpc.proto.py.Bytes_pb2 import Bytes
 from tzrpc.proto.py.Number_pb2 import Double, Integer
 from tzrpc.proto.py.Server_pb2_grpc import toObjectStub
 from tzrpc.proto.py.String_pb2 import String
-from tzrpc.utils.constant import MAX_MESSAGE_LENGTH
+from tzrpc.utils.constant import MAX_MESSAGE_LENGTH, MAX_METADATA_SIZE
 from tzrpc.utils.logger import get_logger
 from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
 
@@ -50,7 +50,8 @@ class TZPRC_Client:
         self.server_address = server_address
         self.channel = grpc.insecure_channel(server_address,
                                              options=[('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
-                                                      ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH)]
+                                                      ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
+                                                      ('grpc.max_metadata_size', MAX_METADATA_SIZE)]
                                              )
 
     def register(self, func):

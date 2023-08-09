@@ -7,7 +7,7 @@ import numbers
 
 from tzrpc import TZRPC_Server
 
-server = TZRPC_Server(__name__)
+server = TZRPC_Server(__name__, debug=False)
 
 
 @server.register
@@ -47,8 +47,10 @@ def send_bool(_bool: bool):
 
 @server.register
 def send_python_obj(data):
+    print(data)
     return data
 
 
 if __name__ == "__main__":
     server.run("localhost", 8000)
+

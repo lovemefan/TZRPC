@@ -8,7 +8,7 @@ import logging.handlers
 import os
 import sys
 
-logger_list = []
+loggers_dict = {}
 LEVEL = ("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL")
 DEFAULT_LOG_FILE_DIR = "~/.cache/tzrpc-log/"
 LOCAL_DEFAULT_LOG_FILE_DIR = os.path.join(
@@ -69,9 +69,10 @@ def get_logger(logger_name: str = "tzrpc", **kwargs) -> logging.Logger:
     Returns:
         logger (logging.Logger): Logger.
     """
+
+    if logger_name in loggers_dict:
+        return loggers_dict[logger_name]
     mf_logger = logging.getLogger(logger_name)
-    if logger_name in logger_list:
-        return mf_logger
 
     save_log_file = kwargs.get("save_log_file", True)
     stdout_level = kwargs.get("stdout_level", "INFO")
@@ -125,6 +126,6 @@ def get_logger(logger_name: str = "tzrpc", **kwargs) -> logging.Logger:
     mf_logger.propagate = False
     mf_logger.parent = None
 
-    logger_list.append(logger_name)
+    loggers_dict[logger_name] = mf_logger
 
     return mf_logger
