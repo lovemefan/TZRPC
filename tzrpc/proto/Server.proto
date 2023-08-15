@@ -14,7 +14,9 @@ service toObject {
   rpc toDouble(Double) returns (Double) {};
   rpc toBoolean(Boolean) returns (Boolean) {};
   rpc toBytes(Bytes) returns (Bytes) {};
+  rpc toBytesStream(stream Bytes) returns (stream Bytes);
   rpc toNdarray(ndarray) returns (ndarray) {};
+  rpc toNdarrayStream(stream ndarray) returns (stream ndarray);
   rpc toTensor(Tensor) returns (Tensor) {};
 
   rpc toNdarrays(ndarrays) returns (ndarrays) {};

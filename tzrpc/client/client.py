@@ -6,6 +6,8 @@
 import logging
 import numbers
 import pickle
+from functools import partial
+from typing import Generator
 
 import grpc
 import numpy as np
@@ -54,17 +56,21 @@ class TZPRC_Client:
                                                       ('grpc.max_metadata_size', MAX_METADATA_SIZE)]
                                              )
 
-    def register(self, func):
+    def register(self, func=None, stream=False):
         """
-        :param return_type: type of return [String, ]
+        Args:
+            return_type: type of return [String, ]
+            stream(bool): use stream mode
         :return:
         """
         # if return_type not in self.__type:
         #     raise ValueError(f"TZRPC return type only support {self.__type}")
+        def decorate(_func):
+            return partial(wrapper, _func)
 
-        def wrapper(*args, **kwargs):
-            stub = toObjectStub(self.channel, func.__name__)
-            result = func(*args, **kwargs)
+        def wrapper(_func, *args, **kwargs):
+            stub = toObjectStub(self.channel, _func.__name__)
+            result = _func(*args, **kwargs)
             if isinstance(result, str):
                 request = String(text=result)
                 response = stub.toString(request).text
@@ -95,10 +101,18 @@ class TZPRC_Client:
             else:
                 logger.info(f"Data will serialized by pickle and send with bytes")
                 obj = pickle.dumps(result)
-                request = Bytes(data=b"PICKLE"+obj)
-                response = pickle.loads(stub.toBytes(request).data)
+                if stream:
+                    request = Bytes(data=b"STREAM"+obj)
+                    response = stub.toBytesStream(request)
+                else:
+                    request = Bytes(data=b"PICKLE"+obj)
+                    response = pickle.loads(stub.toBytes(request).data)
+
                 logger.debug(f"type of data loaded is {type(response)}")
 
             return response
 
-        return wrapper
+        if func is not None:
+            return partial(wrapper, func)
+        else:
+            return decorate

@@ -56,6 +56,11 @@ def send_python_obj(obj):
     return obj
 
 
+@client.register(stream=True)
+def send_bytes_stream(obj):
+    return obj
+
+
 if __name__ == "__main__":
     print(say_hello(text="lovemefan 1"))
     print(say_hello(text="lovemefan 1"))
@@ -68,10 +73,6 @@ if __name__ == "__main__":
     print(send_bool(True))
     print(send_bool(False))
 
-    class testOb:
-        def __init__(self, name, age):
-            self.name = name
-            self.age = age
-
-    python_obj = testOb("test_name", 20)
-    print(send_python_obj(python_obj))
+    print(send_python_obj({'audio': b'RIFF', 'tran': 0}))
+    for i in range(20):
+        print(list(send_bytes_stream({'test': f'test-{i}'})))

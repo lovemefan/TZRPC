@@ -4,6 +4,7 @@
 # @Email : lovemefan@outlook.com
 # @File : rpc.py
 import pickle
+from functools import partial
 
 from tzrpc.proto.py.Boolean_pb2 import Boolean
 from tzrpc.proto.py.Bytes_pb2 import Bytes
@@ -22,20 +23,32 @@ class RpcServicer:
     def __init__(self):
         pass
 
-    def register(self, task):
-        _listener = Listener(task)
-        # print(_listener)
-        logger.debug(f"Instance's task  {_listener.task} registered")
-        servicers.append(_listener)
+    def register(self, task=None, stream=False):
 
-        def wrapper(*args, **kwargs):
+        if task is not None:
+            _listener = Listener(task)
+            # print(_listener)
+            logger.debug(f"Instance's task  {_listener.task} registered")
+            servicers.append(_listener)
+
+        def decorate(_func):
+            _listener = Listener(_func)
+            # print(_listener)
+            logger.debug(f"Instance's task  {_listener.task} registered")
+            servicers.append(_listener)
+            return partial(wrapper, _func)
+
+        def wrapper(_func, *args, **kwargs):
             print(args, kwargs)
             print(f"{task.__name__}: text")
             self.args = args
             self.kwargs = kwargs
             return task(*args, **kwargs)
 
-        return wrapper
+        if task is not None:
+            return partial(wrapper, task)
+        else:
+            return decorate
 
 
 class Listener:
@@ -89,6 +102,7 @@ class Listener:
         result = self.task(data)
         if is_pickled:
             result = pickle.dumps(result)
+
         response = Bytes(data=result)
         return response
 
@@ -104,6 +118,22 @@ class Listener:
         _ndarray = self.task(request.value)
         response = ndarrays(ndarray=_ndarray)
         return response
+
+    def toBytesStream(self,  request, context):
+        logger.debug(f"Method toBytes({request}, {context}) called.")
+        data = request.data
+        is_pickled = True if b"PICKLE" in data[:6] else False
+        if is_pickled:
+            data = pickle.loads(data[6:])
+        result = self.task(data)
+        if is_pickled:
+            result = pickle.dumps(result)
+
+        response = Bytes(data=result)
+        return response
+
+    def toNdarrayStream(self,  request, context):
+        pass
 
     def toTensor(self, request, context):
         pass
