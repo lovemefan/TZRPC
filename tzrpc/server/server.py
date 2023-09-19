@@ -25,8 +25,11 @@ logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
 class TZRPC_Server(tzrpcBase):
     def __init__(self, name, debug=False):
         if debug:
-            get_logger(to_std=True, stdout_level="DEBUG" if debug else "INFO", save_log_file=False)\
-                .setLevel(logging.DEBUG)
+            get_logger(
+                to_std=True,
+                stdout_level="DEBUG" if debug else "INFO",
+                save_log_file=False,
+            ).setLevel(logging.DEBUG)
 
         super().__init__(name)
 
@@ -74,7 +77,9 @@ class TZRPC_Server(tzrpcBase):
             )
 
         host, port = host or "127.0.0.1", port or 8000
-        get_logger(to_std=True, stdout_level="DEBUG" if debug else "INFO", save_log_file=False)
+        get_logger(
+            to_std=True, stdout_level="DEBUG" if debug else "INFO", save_log_file=False
+        )
         try:
             self.is_running = True
             self.is_stopping = False
@@ -86,11 +91,14 @@ class TZRPC_Server(tzrpcBase):
                 workers = 1
             if workers == 1:
                 logger.info(f"Tzrpc Server now listening {host}:{port}.")
-                server = grpc.server(futures.ThreadPoolExecutor(),
-                                     options=[('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
-                                      ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
-                                              ('grpc.max_metadata_size', MAX_METADATA_SIZE)]
-                                     )
+                server = grpc.server(
+                    futures.ThreadPoolExecutor(),
+                    options=[
+                        ("grpc.max_send_message_length", MAX_MESSAGE_LENGTH),
+                        ("grpc.max_receive_message_length", MAX_MESSAGE_LENGTH),
+                        ("grpc.max_metadata_size", MAX_METADATA_SIZE),
+                    ],
+                )
                 for servicer in servicers:
                     add_toObjectServicer_to_server(
                         servicer, server, servicer.task.__name__
@@ -105,7 +113,8 @@ class TZRPC_Server(tzrpcBase):
                 raise ValueError(
                     "it so sorry for mutil-process is not available, please set work = 1"
                 )
-        except BaseException:
+        except BaseException as base_exc:
+            logger.info(base_exc)
             traceback.print_exc()
         finally:
             self.is_running = False

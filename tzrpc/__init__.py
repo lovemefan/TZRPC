@@ -4,7 +4,7 @@
 # @Time      :2022/9/4 18:11
 # @Author    :lovemefan
 # @email     :lovemefan@outlook.com
-from .server.server import TZRPC_Server
 from .client.client import TZPRC_Client
+from .server.server import TZRPC_Server
 
 __all__ = ["TZRPC_Server", "TZPRC_Client"]
