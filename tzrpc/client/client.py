@@ -7,8 +7,6 @@ import logging
 import numbers
 import pickle
 from functools import partial
-from typing import Generator
-
 import grpc
 import numpy as np
 
@@ -50,11 +48,14 @@ class TZPRC_Client:
         if debug:
             logger.setLevel(logging.DEBUG)
         self.server_address = server_address
-        self.channel = grpc.insecure_channel(server_address,
-                                             options=[('grpc.max_send_message_length', MAX_MESSAGE_LENGTH),
-                                                      ('grpc.max_receive_message_length', MAX_MESSAGE_LENGTH),
-                                                      ('grpc.max_metadata_size', MAX_METADATA_SIZE)]
-                                             )
+        self.channel = grpc.insecure_channel(
+            server_address,
+            options=[
+                ("grpc.max_send_message_length", MAX_MESSAGE_LENGTH),
+                ("grpc.max_receive_message_length", MAX_MESSAGE_LENGTH),
+                ("grpc.max_metadata_size", MAX_METADATA_SIZE),
+            ],
+        )
 
     def register(self, func=None, stream=False):
         """
@@ -63,6 +64,7 @@ class TZPRC_Client:
             stream(bool): use stream mode
         :return:
         """
+
         # if return_type not in self.__type:
         #     raise ValueError(f"TZRPC return type only support {self.__type}")
         def decorate(_func):
@@ -70,47 +72,61 @@ class TZPRC_Client:
 
         def wrapper(_func, *args, **kwargs):
             stub = toObjectStub(self.channel, _func.__name__)
+            # logger.debug(f"{self.channel._channel.name}-{_func.__name__}")
             result = _func(*args, **kwargs)
-            if isinstance(result, str):
-                request = String(text=result)
-                response = stub.toString(request).text
+            if not stream:
+                if isinstance(result, str):
+                    request = String(text=result)
+                    response = stub.toString(request).text
 
-            elif isinstance(result, np.ndarray):
-                request = numpy2protobuf(result)
-                response = protobuf2numpy(stub.toNdarray(request))
-            elif isinstance(result, bytes):
-                request = Bytes(data=result)
-                response = stub.toBytes(request).data
-            elif isinstance(result, bool):
-                request = Boolean(value=result)
-                response = bool(stub.toBoolean(request).value)
-            elif isinstance(result, numbers.Number):
-                if isinstance(result, int):
-                    request = Integer(value=result)
-                    response = stub.toInteger(request).value
-                elif isinstance(result, float):
-                    request = Double(value=result)
-                    response = stub.toDouble(request).value
+                elif isinstance(result, np.ndarray):
+                    request = numpy2protobuf(result)
+                    response = protobuf2numpy(stub.toNdarray(request))
+                elif isinstance(result, bytes):
+                    request = Bytes(data=result)
+                    response = stub.toBytes(request).data
+                elif isinstance(result, bool):
+                    request = Boolean(value=result)
+                    response = bool(stub.toBoolean(request).value)
+                elif isinstance(result, numbers.Number):
+                    if isinstance(result, int):
+                        request = Integer(value=result)
+                        response = stub.toInteger(request).value
+                    elif isinstance(result, float):
+                        request = Double(value=result)
+                        response = stub.toDouble(request).value
+                    else:
+                        logger.exception(f"Type of {type(result)} is not support")
+                elif self.tensor_type is not None and isinstance(
+                    result, self.tensor_type
+                ):
+                    request = numpy2protobuf(result.numpy())
+                    response = torch.from_numpy(
+                        protobuf2numpy(stub.toNdarray(request)).copy()
+                    )
                 else:
-                    logger.exception(f"Type of {type(result)} is not support")
-            elif self.tensor_type is not None and isinstance(result, self.tensor_type):
-                request = numpy2protobuf(result.numpy())
-                response = torch.from_numpy(
-                    protobuf2numpy(stub.toNdarray(request)).copy()
-                )
-            else:
-                logger.info(f"Data will serialized by pickle and send with bytes")
-                obj = pickle.dumps(result)
-                if stream:
-                    request = Bytes(data=b"STREAM"+obj)
-                    response = stub.toBytesStream(request)
-                else:
-                    request = Bytes(data=b"PICKLE"+obj)
+                    logger.info("Data will serialized by pickle and send with bytes")
+                    obj = pickle.dumps(result)
+                    request = Bytes(data=b"PICKLE" + obj)
                     response = pickle.loads(stub.toBytes(request).data)
+                    logger.debug(f"type of data loaded is {type(response)}")
+                return response
+            else:
 
-                logger.debug(f"type of data loaded is {type(response)}")
+                def pack(data):
+                    for i in data:
+                        _obj = pickle.dumps(i)
+                        yield Bytes(data=b"PICKLE" + _obj)
 
-            return response
+                def unpack(data):
+                    for i in data:
+                        _data = i.data
+                        is_pickled = True if b"PICKLE" in _data[:6] else False
+                        if is_pickled:
+                            _data = pickle.loads(_data[6:])
+                        yield _data
+
+                return unpack(stub.toBytesStream(pack(result)))
 
         if func is not None:
             return partial(wrapper, func)

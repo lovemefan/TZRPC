@@ -5,7 +5,6 @@
 # @File : rpc.py
 import pickle
 from functools import partial
-
 from tzrpc.proto.py.Boolean_pb2 import Boolean
 from tzrpc.proto.py.Bytes_pb2 import Bytes
 from tzrpc.proto.py.Number_pb2 import Double, Float, Integer
@@ -16,7 +15,7 @@ from tzrpc.utils.numpy_serialized import numpy2protobuf, protobuf2numpy
 
 servicers = []
 
-logger = get_logger(to_std=True, stdout_level="INFO", save_log_file=False)
+logger = get_logger(to_std=True, stdout_level="DEBUG", save_log_file=False)
 
 
 class RpcServicer:
@@ -24,7 +23,6 @@ class RpcServicer:
         pass
 
     def register(self, task=None, stream=False):
-
         if task is not None:
             _listener = Listener(task)
             # print(_listener)
@@ -119,20 +117,21 @@ class Listener:
         response = ndarrays(ndarray=_ndarray)
         return response
 
-    def toBytesStream(self,  request, context):
-        logger.debug(f"Method toBytes({request}, {context}) called.")
-        data = request.data
-        is_pickled = True if b"PICKLE" in data[:6] else False
-        if is_pickled:
-            data = pickle.loads(data[6:])
-        result = self.task(data)
-        if is_pickled:
-            result = pickle.dumps(result)
+    def toBytesStream(self, request, context):
+        logger.debug(f"Method toBytesStream({request}, {context}) called.")
 
-        response = Bytes(data=result)
-        return response
+        for data in request:
+            data = data.data
+            is_pickled = True if b"PICKLE" in data[:6] else False
+            if is_pickled:
+                data = pickle.loads(data[6:])
+            result = self.task(data)
 
-    def toNdarrayStream(self,  request, context):
+            for i in result:
+                _result = pickle.dumps(i)
+                yield Bytes(data=b"PICKLE" + _result)
+
+    def toNdarrayStream(self, request, context):
         pass
 
     def toTensor(self, request, context):

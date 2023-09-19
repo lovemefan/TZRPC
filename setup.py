@@ -12,7 +12,7 @@ requirements = {"install": ["grpcio==1.40.0", "grpcio-tools==1.40.0", "numpy"]}
 
 setuptools.setup(
     name="tzrpc",
-    version="v0.0.3",
+    version="v0.0.4",
     author="Lovemefan, Yunnan Key Laboratory of Artificial Intelligence, "
     "Kunming University of Science and Technology, Kunming, Yunnan ",
     author_email="lovemefan@outlook.com",
