@@ -51,11 +51,5 @@ def send_python_obj(data):
     return data
 
 
-@server.register(stream=True)
-def send_bytes_stream(obj):
-    return obj
-
-
 if __name__ == "__main__":
     server.run("localhost", 8000)
-
